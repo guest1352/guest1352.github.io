@@ -10,7 +10,8 @@ pacman --noconfirm -S --needed wget
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SeXfce_Theme.tar.xz
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SexConfig.tar.xz
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/pape.png
-wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/calamares.tar.xz
+wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/calamares-3.2.25-1.pkg.tar.xz
+wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/calamares-branding-0.9.1.pkg.tar.xz
 # comment rm iso command ↓ out later / remove it
 rm /home/monkey/artools-workspace/iso/base/*.iso
 pacman --noconfirm -S --needed artools iso-profiles
@@ -30,7 +31,7 @@ EOF
 cp SeXfce_Theme.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/usr/local/share/sexfce.tar.xz
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix
 cp SexConfig.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/home/artix/sexconfig.tar.xz
-cp calamares.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/calamares.tar.xz
+cp calamares-*.pkg.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/
 cat > /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh << EOF
 #!/bin/sh
 cat /yPacmanScc | pacman -Scc
@@ -39,7 +40,7 @@ pacman-key --init
 pacman-key --populate artix
 pacman-key --populate archlinux
 pacman-key --lsign-key 78C9C713EAD7BEC69087447332E21894258C6105
-pacman --noconfirm -Syu --needed xfce4 sddm-openrc elogind librsvg alacritty picom gnome-keyring fish fortune-mod lolcat firefox xorg-drivers mesa xfce4-whiskermenu-plugin networkmanager-openrc network-manager-applet calamares-branding
+pacman --noconfirm -Syu --needed xfce4 sddm-openrc elogind librsvg alacritty picom gnome-keyring fish fortune-mod lolcat firefox xorg-drivers mesa xfce4-whiskermenu-plugin networkmanager-openrc network-manager-applet
 chsh -s /usr/bin/fish
 echo "artix:artix" | chpasswd
 su artix -c "echo 'artix' | chsh -s /usr/bin/fish"
@@ -51,10 +52,11 @@ rc-update add sddm default
 rc-update add NetworkManager default
 (cd /usr/local/share && tar -xf sexfce.tar.xz)
 (cd /home/artix && tar -xf sexconfig.tar.xz)
-(cd / && tar -xf calamares.tar.xz)
 echo "sexlinux" > /etc/hostname
+pacman -U /calamares-*.pkg.tar.xz
 
-pacman --noconfirm -R xfce4-terminal
+pacman --noconfirm -Rs xfce4-terminal
+
 cat /yPacmanScc | pacman -Scc
 EOF
 cat > /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.alacritty.yml << EOF
@@ -166,11 +168,11 @@ rm /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh
 rm /var/lib/artools/buildiso/base/artix/rootfs/yPacmanScc
 rm /var/lib/artools/buildiso/base/artix/rootfs/usr/local/share/sexfce.tar.xz
 rm /var/lib/artools/buildiso/base/artix/rootfs/home/artix/sexconfig.tar.xz
-rm /var/lib/artools/buildiso/base/artix/rootfs/calamares.tar.xz
+rm /var/lib/artools/buildiso/base/artix/rootfs/calamares-*.pkg.tar.xz
 buildiso -p base -sc
 buildiso -p base -bc
 sed -i 's|def_timezone="UTC"|def_timezone="Europe/Berlin"|' /var/lib/artools/buildiso/base/iso/boot/grub/defaults.cfg
 sed -i 's|checksum=y|checksum=n|' /var/lib/artools/buildiso/base/iso/boot/grub/kernels.cfg
 buildiso -p base -zc
 # comment qemu command ↓ out later / remove it
-qemu-system-x86_64 -m 4G -smp 6 -cpu host -enable-kvm -vga virtio -net nic -net user -cdrom /home/monkey/artools-workspace/iso/base/artix-base-openrc-$(date -Idate | sed -e s/-//g)-x86_64.iso
+qemu-system-x86_64 -m 4G -smp 6 -cpu host -enable-kvm -vga virtio -net nic -net user -cdrom /home/monkey/artools-workspace/iso/base/artix-base-openrc-$(date -Idate | sed -e s/-//g)-x86_64.iso -hda bruh.img
