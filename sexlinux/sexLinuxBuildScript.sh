@@ -6,13 +6,12 @@ if ! is_user_root; then
 fi
 echo "This needs to be run on Artix Linux with OpenRC!"
 read -sp "Press enter to Continue"
-# comment qemu command ↓ out later / remove it
 pacman --noconfirm -S --needed wget
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SeXfce_Theme.tar.xz
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SexConfig.tar.xz
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/pape.png
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/calamares.tar.xz
-
+# comment rm iso command ↓ out later / remove it
 rm /home/monkey/artools-workspace/iso/base/*.iso
 pacman --noconfirm -S --needed artools iso-profiles
 umount -R /var/lib/artools/buildiso/base/artix/bootfs
@@ -40,7 +39,7 @@ pacman-key --init
 pacman-key --populate artix
 pacman-key --populate archlinux
 pacman-key --lsign-key 78C9C713EAD7BEC69087447332E21894258C6105
-pacman --noconfirm -Syu --needed xfce4 sddm-openrc elogind librsvg alacritty picom gnome-keyring fish fortune-mod lolcat firefox xorg-drivers mesa xfce4-whiskermenu-plugin networkmanager-openrc network-manager-applet
+pacman --noconfirm -Syu --needed xfce4 sddm-openrc elogind librsvg alacritty picom gnome-keyring fish fortune-mod lolcat firefox xorg-drivers mesa xfce4-whiskermenu-plugin networkmanager-openrc network-manager-applet calamares-branding
 chsh -s /usr/bin/fish
 echo "artix:artix" | chpasswd
 su artix -c "echo 'artix' | chsh -s /usr/bin/fish"
