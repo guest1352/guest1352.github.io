@@ -7,14 +7,10 @@ fi
 echo "This needs to be run on Artix Linux with OpenRC!"
 read -sp "Press enter to Continue"
 # comment qemu command ↓ out later / remove it
-if [ ! -e SeXfce_Theme.tar.xz ]; then
-    pacman --noconfirm -S --needed wget
-    wget http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SeXfce_Theme.tar.xz
-fi
-if [ ! -e SexConfig.tar.xz ]; then
-    pacman --noconfirm -S --needed wget
-    wget http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SexConfig.tar.xz
-fi
+pacman --noconfirm -S --needed wget
+wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SeXfce_Theme.tar.xz
+wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SexConfig.tar.xz
+wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/pape.png
 
 rm /home/monkey/artools-workspace/iso/base/*.iso
 pacman --noconfirm -S --needed artools iso-profiles
@@ -40,17 +36,78 @@ cat /yPacmanScc | pacman -Scc
 
 pacman-key --init
 pacman-key --populate artix
+pacman-key --populate archlinux
 pacman-key --lsign-key 78C9C713EAD7BEC69087447332E21894258C6105
-pacman --noconfirm -Syu --needed xfce4 sddm-openrc elogind librsvg
+pacman --noconfirm -Syu --needed xfce4 sddm-openrc elogind librsvg alacritty picom gnome-keyring fish fortune-mod lolcat firefox xorg-drivers mesa xfce4-whiskermenu-plugin networkmanager-openrc network-manager-applet
+chsh -s /usr/bin/fish
+echo "artix:artix" | chpasswd
+su artix -c "echo 'artix' | chsh -s /usr/bin/fish"
 mkdir -p /etc/sddm.conf.d
 echo "[Autologin]" > /etc/sddm.conf.d/autologin.conf
 echo "User=artix" >> /etc/sddm.conf.d/autologin.conf
 echo "Session=xfce" >> /etc/sddm.conf.d/autologin.conf
 rc-update add sddm default
+rc-update add NetworkManager default
 (cd /usr/local/share && tar -xf sexfce.tar.xz)
 (cd /home/artix && tar -xf sexconfig.tar.xz)
 
+pacman --noconfirm -R xfce4-terminal
 cat /yPacmanScc | pacman -Scc
+EOF
+cat > /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.alacritty.yml << EOF
+colors:
+  primary:
+    background: '0x282a36'
+    foreground: '0xf8f8f2'
+  cursor:
+    text: CellBackground
+    cursor: CellForeground
+  vi_mode_cursor:
+    text: CellBackground
+    cursor: CellForeground
+  search:
+    matches:
+      foreground: '0x44475a'
+      background: '0x50fa7b'
+    focused_match:
+      foreground: '0x44475a'
+      background: '0xffb86c'
+    bar:
+      background: '0x282a36'
+      foreground: '0xf8f8f2'
+  line_indicator:
+    foreground: None
+    background: None
+  selection:
+    text: CellForeground
+    background: '0x44475a'
+  normal:
+    black:   '0x000000'
+    red:     '0xff5555'
+    green:   '0x50fa7b'
+    yellow:  '0xf1fa8c'
+    blue:    '0xbd93f9'
+    magenta: '0xff79c6'
+    cyan:    '0x8be9fd'
+    white:   '0xbfbfbf'
+  bright:
+    black:   '0x4d4d4d'
+    red:     '0xff6e67'
+    green:   '0x5af78e'
+    yellow:  '0xf4f99d'
+    blue:    '0xcaa9fa'
+    magenta: '0xff92d0'
+    cyan:    '0x9aedfe'
+    white:   '0xe6e6e6'
+  dim:
+    black:   '0x14151b'
+    red:     '0xff2222'
+    green:   '0x1ef956'
+    yellow:  '0xebf85b'
+    blue:    '0x4d5b86'
+    magenta: '0xff46b0'
+    cyan:    '0x59dffc'
+    white:   '0xe6e6d1'
 EOF
 
 while true; do
@@ -64,6 +121,39 @@ done
 
 chmod +x /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh
 artix-chroot /var/lib/artools/buildiso/base/artix/rootfs /sexLinuxChrootScript.sh
+mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/fish
+mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/root/.config/fish
+cat > /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/fish/config.fish << EOF
+function fish_greeting
+neofetch
+fortune -o | lolcat
+end
+function bind_bang
+    switch (commandline -t)[-1]
+        case "!"
+            commandline -t $history[1]; commandline -f repaint
+        case "*"
+            commandline -i !
+    end
+end
+
+function bind_dollar
+    switch (commandline -t)[-1]
+        case "!"
+            commandline -t ""
+            commandline -f history-token-search-backward
+        case "*"
+            commandline -i '$'
+    end
+end
+
+function fish_user_key_bindings
+    bind ! bind_bang
+    bind '$' bind_dollar
+end
+set EDITOR "nano"
+EOF
+cp /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/fish/config.fish /var/lib/artools/buildiso/base/artix/rootfs/root/.config/fish/config.fish
 if [ "$configAns" = "y" ]; then
     artix-chroot /var/lib/artools/buildiso/base/artix/rootfs /bin/bash
 fi
@@ -77,4 +167,4 @@ sed -i 's|def_timezone="UTC"|def_timezone="Europe/Berlin"|' /var/lib/artools/bui
 sed -i 's|checksum=y|checksum=n|' /var/lib/artools/buildiso/base/iso/boot/grub/kernels.cfg
 buildiso -p base -zc
 # comment qemu command ↓ out later / remove it
-qemu-system-x86_64 -m 4G -smp 6 -cpu host -enable-kvm -net nic -net user -cdrom /home/monkey/artools-workspace/iso/base/artix-base-openrc-$(date -Idate | sed -e s/-//g)-x86_64.iso
+qemu-system-x86_64 -m 4G -smp 6 -cpu host -enable-kvm -vga virtio -net nic -net user -cdrom /home/monkey/artools-workspace/iso/base/artix-base-openrc-$(date -Idate | sed -e s/-//g)-x86_64.iso
