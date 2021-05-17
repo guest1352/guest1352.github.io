@@ -10,39 +10,95 @@
                 cursor: url('/stuff/cursor.gif'), auto;
                 height: 100%
             }
-            video {   
+            .gallery {
+                display: grid;
+                grid-template-columns: repeat(8, 1fr);
+                grid-template-rows: repeat(8, 5vw);
+                grid-gap: 15px;
+            }
+            .gallery__img {
                 width: 100%;
-                height: auto;
-                max-height: 100%;
+                height: 100%;
+                object-fit: cover;
             }
             </style>
     </head>
     <body>
         <center>
-        <img src="/images/stuff/1441222571957.jpg" alt="an image"/>
-        <img src="/images/stuff/1496606937450.jpg" alt="an image"/>
-        <img src="/images/stuff/1554134792898.png" alt="an image"/>
-        <img src="/images/stuff/1580175879555.gif" alt="an image"/>
-        <img src="/images/stuff/1582494647638.jpg" alt="an image"/>
-        <img src="/images/stuff/1596568572165.png" alt="an image"/>
-        <img src="/images/stuff/1597868354947.jpg" alt="an image"/>
-        <img src="/images/stuff/1601366323695.jpg" alt="an image"/>
-        <img src="/images/stuff/1614798332918.jpg" alt="an image"/>
-        <img src="/images/stuff/1616285171362.jpg" alt="an image"/>
-        <img src="/images/stuff/1618346933812.jpg" alt="an image"/>
-        <img src="/images/stuff/192900656_4a643eaf803a4fab9808c44c9437c6ab.jpg" alt="an image"/>
-        <img src="/images/stuff/all_edge.png" alt="an image"/>
-        <img src="/images/stuff/based_call_nsa.png" alt="an image"/>
-        <img src="/images/stuff/C4BE6F568BD842F6A56149B003ADEA2F.jpg" alt="an image"/>
-        <img src="/images/stuff/caption.gif" alt="an image"/>
-        <img src="/images/stuff/computercat.jpg" alt="an image"/>
-        <img src="/images/stuff/DED63C5F834A40E9979952CC00C8E7A5.gif" alt="an image"/>
-        <img src="/images/stuff/image0.jpg" alt="an image"/>
-        <img src="/images/stuff/internetbox.jpg" alt="an image"/>
-        <img src="/images/stuff/photo_20210505_010035.jpg" alt="an image"/>
-        <img src="/images/stuff/stackoverflow.png" alt="an image"/>
-        <img src="/images/stuff/This_thread.jpg" alt="an image"/>
-        <img src="/images/stuff/yikes.jpg" alt="an image"/>
+            <div class="gallery">
+                <figure class="gallery__item gallery__item--1">
+            <img src="/images/stuff/1441222571957.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--2">
+            <img src="/images/stuff/1496606937450.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--3">
+            <img src="/images/stuff/1554134792898.png" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--4">
+            <img src="/images/stuff/1580175879555.gif" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--5">
+            <img src="/images/stuff/1582494647638.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--6">
+            <img src="/images/stuff/1596568572165.png" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--7">
+            <img src="/images/stuff/1597868354947.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--8">
+            <img src="/images/stuff/1601366323695.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--9">
+            <img src="/images/stuff/1614798332918.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--10">
+            <img src="/images/stuff/1616285171362.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--11">
+            <img src="/images/stuff/1618346933812.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--12">
+            <img src="/images/stuff/192900656_4a643eaf803a4fab9808c44c9437c6ab.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--13">
+            <img src="/images/stuff/all_edge.png" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--14">
+            <img src="/images/stuff/based_call_nsa.png" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--15">
+            <img src="/images/stuff/C4BE6F568BD842F6A56149B003ADEA2F.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--16">
+            <img src="/images/stuff/caption.gif" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--17">
+            <img src="/images/stuff/computercat.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--18">
+            <img src="/images/stuff/DED63C5F834A40E9979952CC00C8E7A5.gif" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--19">
+            <img src="/images/stuff/image0.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--20">
+            <img src="/images/stuff/internetbox.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--21">
+            <img src="/images/stuff/photo_20210505_010035.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--22">
+            <img src="/images/stuff/stackoverflow.png" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--23">
+            <img src="/images/stuff/This_thread.jpg" alt="an image"/>
+            </figure>
+            <figure class="gallery__item gallery__item--24">
+            <img src="/images/stuff/yikes.jpg" alt="an image"/>
+            </figure>
+        </div>
         </center>
     </body>
 </html>
