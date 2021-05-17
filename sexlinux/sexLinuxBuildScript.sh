@@ -11,6 +11,7 @@ pacman --noconfirm -S --needed wget
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SeXfce_Theme.tar.xz
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SexConfig.tar.xz
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/pape.png
+wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/calamares.tar.xz
 
 rm /home/monkey/artools-workspace/iso/base/*.iso
 pacman --noconfirm -S --needed artools iso-profiles
@@ -30,6 +31,7 @@ EOF
 cp SeXfce_Theme.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/usr/local/share/sexfce.tar.xz
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix
 cp SexConfig.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/home/artix/sexconfig.tar.xz
+cp calamares.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/calamares.tar.xz
 cat > /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh << EOF
 #!/bin/sh
 cat /yPacmanScc | pacman -Scc
@@ -50,6 +52,8 @@ rc-update add sddm default
 rc-update add NetworkManager default
 (cd /usr/local/share && tar -xf sexfce.tar.xz)
 (cd /home/artix && tar -xf sexconfig.tar.xz)
+(cd / && tar -xf calamares.tar.xz)
+echo "sexlinux" > /etc/hostname
 
 pacman --noconfirm -R xfce4-terminal
 cat /yPacmanScc | pacman -Scc
@@ -120,6 +124,8 @@ while true; do
 done
 
 chmod +x /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh
+mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/usr/share/backgrounds/sexlinux
+cp pape.png /var/lib/artools/buildiso/base/artix/rootfs/usr/share/backgrounds/sexlinux/pape.png
 artix-chroot /var/lib/artools/buildiso/base/artix/rootfs /sexLinuxChrootScript.sh
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/fish
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/root/.config/fish
@@ -161,6 +167,7 @@ rm /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh
 rm /var/lib/artools/buildiso/base/artix/rootfs/yPacmanScc
 rm /var/lib/artools/buildiso/base/artix/rootfs/usr/local/share/sexfce.tar.xz
 rm /var/lib/artools/buildiso/base/artix/rootfs/home/artix/sexconfig.tar.xz
+rm /var/lib/artools/buildiso/base/artix/rootfs/calamares.tar.xz
 buildiso -p base -sc
 buildiso -p base -bc
 sed -i 's|def_timezone="UTC"|def_timezone="Europe/Berlin"|' /var/lib/artools/buildiso/base/iso/boot/grub/defaults.cfg
