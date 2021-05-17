@@ -11,6 +11,10 @@ if [ ! -e SeXfce_Theme.tar.xz ]; then
     pacman --noconfirm -S --needed wget
     wget http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SeXfce_Theme.tar.xz
 fi
+if [ ! -e SexConfig.tar.xz ]; then
+    pacman --noconfirm -S --needed wget
+    wget http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SexConfig.tar.xz
+fi
 
 rm /home/monkey/artools-workspace/iso/base/*.iso
 pacman --noconfirm -S --needed artools iso-profiles
@@ -28,6 +32,8 @@ y
 y
 EOF
 cp SeXfce_Theme.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/usr/local/share/sexfce.tar.xz
+mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix
+cp SexConfig.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/home/artix/sexconfig.tar.xz
 cat > /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh << EOF
 #!/bin/sh
 cat /yPacmanScc | pacman -Scc
@@ -42,6 +48,7 @@ echo "User=artix" >> /etc/sddm.conf.d/autologin.conf
 echo "Session=xfce" >> /etc/sddm.conf.d/autologin.conf
 rc-update add sddm default
 (cd /usr/local/share && tar -xf sexfce.tar.xz)
+(cd /home/artix && tar -xf sexconfig.tar.xz)
 
 cat /yPacmanScc | pacman -Scc
 EOF
@@ -63,6 +70,7 @@ fi
 rm /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh
 rm /var/lib/artools/buildiso/base/artix/rootfs/yPacmanScc
 rm /var/lib/artools/buildiso/base/artix/rootfs/usr/local/share/sexfce.tar.xz
+rm /var/lib/artools/buildiso/base/artix/rootfs/home/artix/sexconfig.tar.xz
 buildiso -p base -sc
 buildiso -p base -bc
 sed -i 's|def_timezone="UTC"|def_timezone="Europe/Berlin"|' /var/lib/artools/buildiso/base/iso/boot/grub/defaults.cfg
