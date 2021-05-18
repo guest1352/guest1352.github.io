@@ -30,7 +30,6 @@ EOF
 cp SeXfce_Theme.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/usr/local/share/sexfce.tar.xz
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix
 cp SexConfig.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/home/artix/sexconfig.tar.xz
-cp calamares-*.pkg.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/
 cat > /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh << EOF
 #!/bin/sh
 cat /yPacmanScc | pacman -Scc
@@ -52,7 +51,6 @@ rc-update add NetworkManager default
 (cd /usr/local/share && tar -xf sexfce.tar.xz)
 (cd /home/artix && tar -xf sexconfig.tar.xz)
 echo "sexlinux" > /etc/hostname
-pacman --noconfirm -Rs xfce4-terminal
 
 cat /yPacmanScc | pacman -Scc
 EOF
@@ -122,9 +120,9 @@ while true; do
 done
 
 chmod +x /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh
+artix-chroot /var/lib/artools/buildiso/base/artix/rootfs /sexLinuxChrootScript.sh
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/usr/share/backgrounds/sexlinux
 cp pape.png /var/lib/artools/buildiso/base/artix/rootfs/usr/share/backgrounds/sexlinux/pape.png
-artix-chroot /var/lib/artools/buildiso/base/artix/rootfs /sexLinuxChrootScript.sh
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/fish
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/root/.config/fish
 cat > /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/fish/config.fish << EOF
