@@ -10,8 +10,7 @@ pacman --noconfirm -S --needed wget
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SeXfce_Theme.tar.xz
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SexConfig.tar.xz
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/pape.png
-wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/calamares-3.2.25-1.pkg.tar.xz
-wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/calamares-branding-0.9.1.pkg.tar.xz
+wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/sexLinuxInstallScript.sh
 # comment rm iso command ↓ out later / remove it
 rm /home/monkey/artools-workspace/iso/base/*.iso
 pacman --noconfirm -S --needed artools iso-profiles
@@ -40,7 +39,7 @@ pacman-key --init
 pacman-key --populate artix
 pacman-key --populate archlinux
 pacman-key --lsign-key 78C9C713EAD7BEC69087447332E21894258C6105
-pacman --noconfirm -Syu --needed xfce4 sddm-openrc elogind librsvg alacritty picom gnome-keyring fish fortune-mod lolcat firefox xorg-drivers mesa xfce4-whiskermenu-plugin networkmanager-openrc network-manager-applet
+pacman --noconfirm -Syu --needed xfce4 gparted sddm-openrc elogind librsvg alacritty picom gnome-keyring fish fortune-mod lolcat firefox xorg-drivers mesa xfce4-whiskermenu-plugin networkmanager-openrc network-manager-applet
 chsh -s /usr/bin/fish
 echo "artix:artix" | chpasswd
 su artix -c "echo 'artix' | chsh -s /usr/bin/fish"
@@ -53,8 +52,6 @@ rc-update add NetworkManager default
 (cd /usr/local/share && tar -xf sexfce.tar.xz)
 (cd /home/artix && tar -xf sexconfig.tar.xz)
 echo "sexlinux" > /etc/hostname
-pacman -U /calamares-*.pkg.tar.xz
-
 pacman --noconfirm -Rs xfce4-terminal
 
 cat /yPacmanScc | pacman -Scc
@@ -160,6 +157,9 @@ function fish_user_key_bindings
 end
 set EDITOR "nano"
 EOF
+mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop
+cp sexLinuxInstallScript.sh /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/installSexLinux.sh
+chmod +x /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/installSexLinux.sh
 cp /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/fish/config.fish /var/lib/artools/buildiso/base/artix/rootfs/root/.config/fish/config.fish
 if [ "$configAns" = "y" ]; then
     artix-chroot /var/lib/artools/buildiso/base/artix/rootfs /bin/bash
@@ -168,7 +168,6 @@ rm /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh
 rm /var/lib/artools/buildiso/base/artix/rootfs/yPacmanScc
 rm /var/lib/artools/buildiso/base/artix/rootfs/usr/local/share/sexfce.tar.xz
 rm /var/lib/artools/buildiso/base/artix/rootfs/home/artix/sexconfig.tar.xz
-rm /var/lib/artools/buildiso/base/artix/rootfs/calamares-*.pkg.tar.xz
 buildiso -p base -sc
 buildiso -p base -bc
 sed -i 's|def_timezone="UTC"|def_timezone="Europe/Berlin"|' /var/lib/artools/buildiso/base/iso/boot/grub/defaults.cfg
