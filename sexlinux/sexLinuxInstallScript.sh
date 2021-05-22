@@ -1,5 +1,38 @@
-#!/bin/sh
+setpass()
+{
+unset PASSWORD
+unset CHARCOUNT
+unset PROMPT
+echo -n "$1"
+stty -echo
 
+CHARCOUNT=0
+while IFS= read -p "$PROMPT" -r -s -n 1 CHAR
+do
+    # Enter - accept password
+    if [[ $CHAR == $'\0' ]] ; then
+        break
+    fi
+    # Backspace
+    if [[ $CHAR == $'\177' ]] ; then
+        if [ $CHARCOUNT -gt 0 ] ; then
+            CHARCOUNT=$((CHARCOUNT-1))
+            PROMPT=$'\b \b'
+            PASSWORD="${PASSWORD%?}"
+        else
+            PROMPT=''
+        fi
+    else
+        CHARCOUNT=$((CHARCOUNT+1))
+        PROMPT='*'
+        PASSWORD+="$CHAR"
+    fi
+done
+
+stty echo
+printf "\n"
+export $2=$PASSWORD
+}
 is_user_root () { [ "${EUID:-$(id -u)}" -eq 0 ]; }
 if ! is_user_root; then
     echo "You need to run this as root!"
@@ -32,25 +65,27 @@ done
 read -p "Set Username: " username
 echo 
 while true; do
-    read -sp "Set $username's Password: " usernamepassword
+    setpass "Set $username's Password: " "usernamepassword"
     echo
-    read -sp "Verify $username's Password: " usernamepasswordcheck
+    setpass "Verify $username's Password: " "usernamepasswordcheck"
     echo
     if [ "$usernamepassword" = "$usernamepasswordcheck" ]; then
         break
     else
         echo "Passwords not the same! Try again."
+        echo
     fi
 done
 while true; do
-    read -sp "Set root Password: " rootpassword
+    setpass "Set root Password: " "rootpassword"
     echo
-    read -sp "Verify root Password: " rootpasswordcheck
+    setpass "Verify root Password: " "rootpasswordcheck"
     echo
     if [ "$rootpassword" = "$rootpasswordcheck" ]; then
         break
     else
         echo "Passwords not the same! Try again."
+        echo
     fi
 done
 read -p "Set hostname: " inhostname
