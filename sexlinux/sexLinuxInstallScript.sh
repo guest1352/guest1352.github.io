@@ -75,6 +75,10 @@ rm /mnt/etc/fstab
 fstabgen -U /mnt >> /mnt/etc/fstab
 cat >> /mnt/sexLinuxChrootScript.sh << EOF
 pacman --noconfirm -Rsn gparted
+pacman --noconfirm -R artix-branding-base artix-live-openrc artix-live-base
+rc-update del artix-live
+rm /etc/issue
+touch /etc/issue
 rm -f /boot/amd-ucode.img /boot/intel-ucode.img
 mkinitcpio -P
 lsblk
