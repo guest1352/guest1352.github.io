@@ -12,8 +12,11 @@ wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SexConfig.tar.xz
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/pape.png
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/sexLinuxInstallScript.sh
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/stuff/donut
-# comment rm iso command ↓ out later / remove it
+# remove ↓ these lines
 rm /home/monkey/artools-workspace/iso/base/*.iso
+rm /home/monkey/shitsite/sexlinux/bruh.img
+qemu-img create -f qcow2 /home/monkey/shitsite/sexlinux/bruh.img 10G
+# remove ^ these lines
 pacman --noconfirm -S --needed artools iso-profiles
 umount -R /var/lib/artools/buildiso/base/artix/bootfs
 umount -R /var/lib/artools/buildiso/base/artix/rootfs
