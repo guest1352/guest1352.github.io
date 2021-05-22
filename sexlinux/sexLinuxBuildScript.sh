@@ -11,6 +11,7 @@ wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SeXfce_Theme.tar.x
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SexConfig.tar.xz
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/pape.png
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/sexLinuxInstallScript.sh
+wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/stuff/donut
 # comment rm iso command ↓ out later / remove it
 rm /home/monkey/artools-workspace/iso/base/*.iso
 pacman --noconfirm -S --needed artools iso-profiles
@@ -157,6 +158,7 @@ set EDITOR "nano"
 EOF
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop
 cp sexLinuxInstallScript.sh /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/installSexLinux.sh
+cp donut /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/donut
 chmod +x /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/installSexLinux.sh
 cp /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/fish/config.fish /var/lib/artools/buildiso/base/artix/rootfs/root/.config/fish/config.fish
 if [ "$configAns" = "y" ]; then
