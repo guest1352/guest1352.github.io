@@ -36,8 +36,6 @@ cp SeXfce_Theme.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/usr/local/sha
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix
 cp SexConfig.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/home/artix/sexconfig.tar.xz
 rm /var/lib/artools/buildiso/base/artix/rootfs/etc/artix-release
-rm /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/neofetch/config.conf
-rm /var/lib/artools/buildiso/base/artix/rootfs/root/.config/neofetch/config.conf
 rm /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/neofetch
 cp neofetch /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/neofetch
 chmod +x /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/neofetch
@@ -75,8 +73,21 @@ rc-update add NetworkManager default
 (cd /usr/local/share && tar -xf sexfce.tar.xz)
 (cd /home/artix && tar -xf sexconfig.tar.xz)
 echo "sexlinux" > /etc/hostname
-
+rm /home/artix/.config/neofetch/config.conf
+rm /root/.config/neofetch/config.conf
 cat /yPacmanScc | pacman -Scc
+EOF
+cat > /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/'Install Sex Linux.desktop' << EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Install Sex Linux
+Comment=Sex Linux Installer
+Exec=sudo alacritty -e /home/artix/Desktop/.installSexLinux.sh
+Icon=
+Path=/home/artix/Desktop
+Terminal=false
+StartupNotify=false
 EOF
 cat > /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.alacritty.yml << EOF
 colors:
@@ -180,10 +191,10 @@ end
 set EDITOR "nano"
 EOF
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop
-cp sexLinuxInstallScript.sh /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/installSexLinux.sh
+cp sexLinuxInstallScript.sh /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/.installSexLinux.sh
 cp donut /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/donut
 chmod +x /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/donut
-chmod +x /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/installSexLinux.sh
+chmod +x /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/.installSexLinux.sh
 cp /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/fish/config.fish /var/lib/artools/buildiso/base/artix/rootfs/root/.config/fish/config.fish
 if [ "$configAns" = "y" ]; then
     artix-chroot /var/lib/artools/buildiso/base/artix/rootfs /bin/bash
