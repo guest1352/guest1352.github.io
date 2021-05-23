@@ -1,7 +1,7 @@
 #!/bin/sh
 is_user_root () { [ "${EUID:-$(id -u)}" -eq 0 ]; }
 if ! is_user_root; then
-    echo "You need to run this as root!"
+    echo "You need to run this as root"
     exit 1
 fi
 echo "This needs to be run on Artix Linux with OpenRC!"
@@ -23,7 +23,7 @@ umount -R /var/lib/artools/buildiso/base/artix/rootfs
 modprobe loop
 buildiso -p base -q
 mkdir -p $HOME/.config/artools $HOME/artools-workspace
-cp /etc/artools/artool*.conf $HOME/.config/artools/
+cp /etc/artools/artools-*.conf $HOME/.config/artools/
 cp -r /usr/share/artools/iso-profiles $HOME/artools-workspace/
 buildiso -p base -x
 sed -i 's|#rc_parallel="NO"|rc_parallel="YES"|' /var/lib/artools/buildiso/base/artix/rootfs/etc/rc.conf
@@ -137,7 +137,7 @@ end
 function bind_bang
     switch (commandline -t)[-1]
         case "!"
-            commandline -t $history[1]; commandline -f repaint
+            commandline -t \$history[1]; commandline -f repaint
         case "*"
             commandline -i !
     end
@@ -162,6 +162,7 @@ EOF
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop
 cp sexLinuxInstallScript.sh /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/installSexLinux.sh
 cp donut /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/donut
+chmod +x /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/donut
 chmod +x /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/installSexLinux.sh
 cp /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/fish/config.fish /var/lib/artools/buildiso/base/artix/rootfs/root/.config/fish/config.fish
 if [ "$configAns" = "y" ]; then
@@ -175,6 +176,7 @@ buildiso -p base -sc
 buildiso -p base -bc
 sed -i 's|def_timezone="UTC"|def_timezone="Europe/Berlin"|' /var/lib/artools/buildiso/base/iso/boot/grub/defaults.cfg
 sed -i 's|checksum=y|checksum=n|' /var/lib/artools/buildiso/base/iso/boot/grub/kernels.cfg
+read -p "paused because i gotta check out the grub shit"
 buildiso -p base -zc
 # comment qemu command ↓ out later / remove it
 qemu-system-x86_64 -m 4G -smp 6 -cpu host -enable-kvm -vga virtio -net nic -net user -cdrom /home/monkey/artools-workspace/iso/base/artix-base-openrc-$(date -Idate | sed -e s/-//g)-x86_64.iso -hda bruh.img

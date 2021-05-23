@@ -1,3 +1,4 @@
+#!/bin/sh
 setpass()
 {
 unset PASSWORD
@@ -63,6 +64,7 @@ done
 # configuration (setting usernames and passwords and all that jazz) #
 
 read -p "Set Username: " username
+# make this check if there are any s p a c e s or CAPITALS in the username
 echo 
 while true; do
     setpass "Set $username's Password: " "usernamepassword"
@@ -96,11 +98,6 @@ read -p "Set hostname: " inhostname
 shopt -s extglob
 cp -avfx / /mnt/
 echo "$inhostname" > /mnt/etc/hostname
-echo "usermod -l $username -m -d /home/$username artix" > /mnt/sexLinuxChrootScript.sh
-echo "groupmod -n $username artix" >> /mnt/sexLinuxChrootScript.sh
-echo "rm -rf /home/$username/.cache/sessions/" >> /mnt/sexLinuxChrootScript.sh
-echo "echo '$username:$usernamepasswordcheck' | chpasswd" >> /mnt/sexLinuxChrootScript.sh
-echo "echo 'root:$rootpasswordcheck' | chpasswd" >> /mnt/sexLinuxChrootScript.sh
 echo "127.0.0.1 localhost" > /mnt/etc/hosts
 echo "::1 localhost" >> /mnt/etc/hosts
 echo "127.0.1.1 $inhostname.localdomain $inhostname" >> /mnt/etc/hosts
@@ -108,7 +105,12 @@ rm -f /mnt/etc/sddm.conf.d/autologin.conf
 cp -vaT /run/artix/bootmnt/boot/vmlinuz-$(uname -m) /mnt/boot/vmlinuz-linux
 rm /mnt/etc/fstab
 fstabgen -U /mnt >> /mnt/etc/fstab
-cat >> /mnt/sexLinuxChrootScript.sh << EOF
+cat > /mnt/sexLinuxChrootScript.sh << EOF
+usermod -l $username -m -d /home/$username artix
+groupmod -n $username artix
+rm -rf /home/$username/.cache/sessions/
+echo '$username:$usernamepasswordcheck' | chpasswd
+echo 'root:$rootpasswordcheck' | chpasswd
 pacman --noconfirm -Rsn gparted
 pacman --noconfirm -R artix-branding-base artix-live-openrc artix-live-base
 rc-update del artix-live
@@ -125,5 +127,7 @@ EOF
 chmod +x /mnt/sexLinuxChrootScript.sh
 artix-chroot /mnt /sexLinuxChrootScript.sh
 rm -f /mnt/home/$username/Desktop/installSexLinux.sh
+# actually doing everything #
+rm -f /mnt/sexLinuxChrootScript.shmnt/home/$username/Desktop/installSexLinux.sh
 # actually doing everything #
 rm -f /mnt/sexLinuxChrootScript.sh
