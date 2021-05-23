@@ -34,6 +34,26 @@ EOF
 cp SeXfce_Theme.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/usr/local/share/sexfce.tar.xz
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix
 cp SexConfig.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/home/artix/sexconfig.tar.xz
+rm /var/lib/artools/buildiso/base/artix/rootfs/etc/artix-release
+echo "Sex Linux Release" > /var/lib/artools/buildiso/base/artix/rootfs/etc/sex-release
+cat > /var/lib/artools/buildiso/base/artix/rootfs/etc/os-release << EOF
+NAME="Sex Linux"
+PRETTY_NAME="Sex Linux"
+ID=sex
+BUILD_ID=rolling
+ANSI_COLOR="0;36"
+HOME_URL="http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/"
+DOCUMENTATION_URL="http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/"
+SUPPORT_URL="http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/"
+BUG_REPORT_URL="http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/"
+LOGO=sexlinux
+EOF
+cat >> /var/lib/artools/buildiso/base/artix/rootfs/etc/pacman.conf << EOF
+
+[SLR]
+SigLevel = Optional TrustAll
+Server = https://raw.githubusercontent.com/guest1352/SLR/master/x86_64
+EOF
 cat > /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh << EOF
 #!/bin/sh
 cat /yPacmanScc | pacman -Scc
