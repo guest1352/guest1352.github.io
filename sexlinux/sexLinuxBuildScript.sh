@@ -12,6 +12,7 @@ wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SexConfig.tar.xz
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/pape.png
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/sexLinuxInstallScript.sh
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/stuff/donut
+wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/neofetch
 # remove ↓ these lines
 rm /home/monkey/artools-workspace/iso/base/*.iso
 rm /home/monkey/shitsite/sexlinux/bruh.img
@@ -35,6 +36,11 @@ cp SeXfce_Theme.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/usr/local/sha
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix
 cp SexConfig.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/home/artix/sexconfig.tar.xz
 rm /var/lib/artools/buildiso/base/artix/rootfs/etc/artix-release
+rm /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/neofetch/config.conf
+rm /var/lib/artools/buildiso/base/artix/rootfs/root/.config/neofetch/config.conf
+rm /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/neofetch
+cp neofetch /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/neofetch
+chmod +x /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/neofetch
 echo "Sex Linux Release" > /var/lib/artools/buildiso/base/artix/rootfs/etc/sex-release
 cat > /var/lib/artools/buildiso/base/artix/rootfs/etc/os-release << EOF
 NAME="Sex Linux"
@@ -47,12 +53,6 @@ DOCUMENTATION_URL="http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/"
 SUPPORT_URL="http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/"
 BUG_REPORT_URL="http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/"
 LOGO=sexlinux
-EOF
-cat >> /var/lib/artools/buildiso/base/artix/rootfs/etc/pacman.conf << EOF
-
-[SLR]
-SigLevel = Optional TrustAll
-Server = https://raw.githubusercontent.com/guest1352/SLR/master/x86_64
 EOF
 cat > /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh << EOF
 #!/bin/sh
