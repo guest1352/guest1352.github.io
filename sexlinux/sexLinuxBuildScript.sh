@@ -77,6 +77,7 @@ rm /home/artix/.config/neofetch/config.conf
 rm /root/.config/neofetch/config.conf
 cat /yPacmanScc | pacman -Scc
 EOF
+mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop
 cat > /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/'Install Sex Linux.desktop' << EOF
 [Desktop Entry]
 Version=1.0
@@ -89,6 +90,7 @@ Path=/home/artix/Desktop
 Terminal=false
 StartupNotify=false
 EOF
+chmod +x /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/'Install Sex Linux.desktop'
 cat > /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.alacritty.yml << EOF
 colors:
   primary:
@@ -207,7 +209,6 @@ buildiso -p base -sc
 buildiso -p base -bc
 sed -i 's|def_timezone="UTC"|def_timezone="Europe/Berlin"|' /var/lib/artools/buildiso/base/iso/boot/grub/defaults.cfg
 sed -i 's|checksum=y|checksum=n|' /var/lib/artools/buildiso/base/iso/boot/grub/kernels.cfg
-read -p "paused because i gotta check out the grub shit"
 buildiso -p base -zc
 # comment qemu command ↓ out later / remove it
 qemu-system-x86_64 -m 4G -smp 6 -cpu host -enable-kvm -vga virtio -net nic -net user -cdrom /home/monkey/artools-workspace/iso/base/artix-base-openrc-$(date -Idate | sed -e s/-//g)-x86_64.iso -hda bruh.img

@@ -123,11 +123,16 @@ read -p "Disk to install Bootloader to (NOT PARTITION!): " DISKBOOT
 grub-install --recheck \$DISKBOOT
 grub-mkconfig -o /boot/grub/grub.cfg
 userdel -r artix
+pacman-key --init
+pacman-key --populate artix
+pacman-key --populate archlinux
+pacman-key --lsign-key 78C9C713EAD7BEC69087447332E21894258C6105
 EOF
 chmod +x /mnt/sexLinuxChrootScript.sh
 artix-chroot /mnt /sexLinuxChrootScript.sh
-rm -f /mnt/home/$username/Desktop/installSexLinux.sh
 # actually doing everything #
-rm -f /mnt/sexLinuxChrootScript.shmnt/home/$username/Desktop/installSexLinux.sh
-# actually doing everything #
-rm -f /mnt/sexLinuxChrootScript.sh
+
+# cleaning up #
+rm -f /mnt/home/$username/Desktop/.installSexLinux.sh /mnt/sexLinuxChrootScript.sh /mnt/home/$username/Desktop/'Install Sex Linux.desktop'
+# cleaning up #
+read -p "Installer finished! you can now reboot or continue exploring Sex Linux. "
