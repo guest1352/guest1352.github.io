@@ -213,6 +213,8 @@ cp donut /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/donut
 chmod +x /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/donut
 chmod +x /var/lib/artools/buildiso/base/artix/rootfs/home/sex/Desktop/.installSexLinux.sh
 cp /var/lib/artools/buildiso/base/artix/rootfs/home/sex/.config/fish/config.fish /var/lib/artools/buildiso/base/artix/rootfs/root/.config/fish/config.fish
+cp nigs.png /var/lib/artools/buildiso/base/artix/rootfs/usr/share/grub/themes/artix/background.png
+cp babunga.png /var/lib/artools/buildiso/base/artix/rootfs/usr/share/grub/themes/artix/logo.png
 if [ "$configAns" = "y" ]; then
     artix-chroot /var/lib/artools/buildiso/base/artix/rootfs /bin/bash
 fi

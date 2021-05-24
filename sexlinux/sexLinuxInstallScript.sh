@@ -43,6 +43,7 @@ read -sp "Press Enter to Start Installation"
 
 # partitioning #
 
+printf "\n"
 echo "Partition your Drive. When done close gparted."
 gparted
 lsblk
