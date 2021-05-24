@@ -12,11 +12,13 @@ wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/SexConfig.tar.xz
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/pape.png
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/sexLinuxInstallScript.sh
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/stuff/donut
+wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/images/stuff/babunga.png
+wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/images/stuff/nigs.png
 wget -c http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/sexlinux/neofetch
 # remove ↓ these lines
-rm /home/monkey/artools-workspace/iso/base/*.iso
-rm /home/monkey/shitsite/sexlinux/bruh.img
-qemu-img create -f qcow2 /home/monkey/shitsite/sexlinux/bruh.img 10G
+#rm /home/monkey/artools-workspace/iso/base/*.iso
+#rm /home/monkey/shitsite/sexlinux/bruh.img
+#qemu-img create -f qcow2 /home/monkey/shitsite/sexlinux/bruh.img 10G
 # remove ^ these lines
 pacman --noconfirm -S --needed artools iso-profiles
 umount -R /var/lib/artools/buildiso/base/artix/bootfs
@@ -33,8 +35,8 @@ y
 y
 EOF
 cp SeXfce_Theme.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/usr/local/share/sexfce.tar.xz
-mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix
-cp SexConfig.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/home/artix/sexconfig.tar.xz
+mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/sex
+cp SexConfig.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/home/sex/sexconfig.tar.xz
 rm /var/lib/artools/buildiso/base/artix/rootfs/etc/artix-release
 rm /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/neofetch
 cp neofetch /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/neofetch
@@ -52,46 +54,58 @@ SUPPORT_URL="http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/"
 BUG_REPORT_URL="http://xn--xp8hk1aaaaaaaa4f4c8frbb96cq78a.ml/"
 LOGO=sexlinux
 EOF
+cat > /var/lib/artools/buildiso/base/artix/rootfs/etc/lsb-release << EOF
+LSB_VERSION=4.20
+DISTRIB_ID=Sex
+DISTRIB_RELEASE=rolling
+DISTRIB_DESCRIPTION="Sex Linux"
+EOF
 cat > /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh << EOF
 #!/bin/sh
 cat /yPacmanScc | pacman -Scc
 
+usermod -l sex -d /home/sex -m artix
+groupmod -n sex artix
 pacman-key --init
 pacman-key --populate artix
 pacman-key --populate archlinux
 pacman-key --lsign-key 78C9C713EAD7BEC69087447332E21894258C6105
 pacman --noconfirm -Syu --needed xfce4 gparted sddm-openrc elogind librsvg alacritty picom gnome-keyring fish fortune-mod lolcat firefox xorg-drivers mesa xfce4-whiskermenu-plugin networkmanager-openrc network-manager-applet
 chsh -s /usr/bin/fish
-echo "artix:artix" | chpasswd
-su artix -c "echo 'artix' | chsh -s /usr/bin/fish"
+echo "sex:sex" | chpasswd
+su sex -c "echo 'sex' | chsh -s /usr/bin/fish"
 mkdir -p /etc/sddm.conf.d
 echo "[Autologin]" > /etc/sddm.conf.d/autologin.conf
-echo "User=artix" >> /etc/sddm.conf.d/autologin.conf
+echo "User=sex" >> /etc/sddm.conf.d/autologin.conf
 echo "Session=xfce" >> /etc/sddm.conf.d/autologin.conf
 rc-update add sddm default
 rc-update add NetworkManager default
 (cd /usr/local/share && tar -xf sexfce.tar.xz)
-(cd /home/artix && tar -xf sexconfig.tar.xz)
+(cd /home/sex && tar -xf sexconfig.tar.xz)
 echo "sexlinux" > /etc/hostname
-rm /home/artix/.config/neofetch/config.conf
+rm /home/sex/.config/neofetch/config.conf
 rm /root/.config/neofetch/config.conf
+userdel -r artix
+rm -rf /home/artix
+chown -v -R sex:sex /home/sex/
+
 cat /yPacmanScc | pacman -Scc
 EOF
-mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop
-cat > /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/'Install Sex Linux.desktop' << EOF
+mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/sex/Desktop
+cat > /var/lib/artools/buildiso/base/artix/rootfs/home/sex/Desktop/'Install Sex Linux.desktop' << EOF
 [Desktop Entry]
 Version=1.0
 Type=Application
 Name=Install Sex Linux
 Comment=Sex Linux Installer
-Exec=sudo alacritty -e /home/artix/Desktop/.installSexLinux.sh
+Exec=sudo alacritty -e /home/sex/Desktop/.installSexLinux.sh --config-file /home/sex/.alacritty.yml
 Icon=
-Path=/home/artix/Desktop
+Path=/home/sex/Desktop
 Terminal=false
 StartupNotify=false
 EOF
-chmod +x /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/'Install Sex Linux.desktop'
-cat > /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.alacritty.yml << EOF
+chmod +x /var/lib/artools/buildiso/base/artix/rootfs/home/sex/Desktop/'Install Sex Linux.desktop'
+cat > /var/lib/artools/buildiso/base/artix/rootfs/home/sex/.alacritty.yml << EOF
 colors:
   primary:
     background: '0x282a36'
@@ -160,12 +174,13 @@ chmod +x /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh
 artix-chroot /var/lib/artools/buildiso/base/artix/rootfs /sexLinuxChrootScript.sh
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/usr/share/backgrounds/sexlinux
 cp pape.png /var/lib/artools/buildiso/base/artix/rootfs/usr/share/backgrounds/sexlinux/pape.png
-mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/fish
+mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/sex/.config/fish
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/root/.config/fish
-cat > /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/fish/config.fish << EOF
+cat > /var/lib/artools/buildiso/base/artix/rootfs/home/sex/.config/fish/config.fish << EOF
 function fish_greeting
 neofetch
 fortune -o | lolcat
+echo -e "\e[31mPASSWORD FOR USER 'sex' IS 'sex'\e[0m"
 end
 function bind_bang
     switch (commandline -t)[-1]
@@ -192,23 +207,25 @@ function fish_user_key_bindings
 end
 set EDITOR "nano"
 EOF
-mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop
-cp sexLinuxInstallScript.sh /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/.installSexLinux.sh
+mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/sex/Desktop
+cp sexLinuxInstallScript.sh /var/lib/artools/buildiso/base/artix/rootfs/home/sex/Desktop/.installSexLinux.sh
 cp donut /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/donut
 chmod +x /var/lib/artools/buildiso/base/artix/rootfs/usr/bin/donut
-chmod +x /var/lib/artools/buildiso/base/artix/rootfs/home/artix/Desktop/.installSexLinux.sh
-cp /var/lib/artools/buildiso/base/artix/rootfs/home/artix/.config/fish/config.fish /var/lib/artools/buildiso/base/artix/rootfs/root/.config/fish/config.fish
+chmod +x /var/lib/artools/buildiso/base/artix/rootfs/home/sex/Desktop/.installSexLinux.sh
+cp /var/lib/artools/buildiso/base/artix/rootfs/home/sex/.config/fish/config.fish /var/lib/artools/buildiso/base/artix/rootfs/root/.config/fish/config.fish
 if [ "$configAns" = "y" ]; then
     artix-chroot /var/lib/artools/buildiso/base/artix/rootfs /bin/bash
 fi
 rm /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh
 rm /var/lib/artools/buildiso/base/artix/rootfs/yPacmanScc
 rm /var/lib/artools/buildiso/base/artix/rootfs/usr/local/share/sexfce.tar.xz
-rm /var/lib/artools/buildiso/base/artix/rootfs/home/artix/sexconfig.tar.xz
+rm /var/lib/artools/buildiso/base/artix/rootfs/home/sex/sexconfig.tar.xz
 buildiso -p base -sc
 buildiso -p base -bc
 sed -i 's|def_timezone="UTC"|def_timezone="Europe/Berlin"|' /var/lib/artools/buildiso/base/iso/boot/grub/defaults.cfg
 sed -i 's|checksum=y|checksum=n|' /var/lib/artools/buildiso/base/iso/boot/grub/kernels.cfg
+cp nigs.png /var/lib/artools/buildiso/base/iso/boot/grub/themes/artix/background.png
+cp babunga.png /var/lib/artools/buildiso/base/iso/boot/grub/themes/artix/logo.png
 buildiso -p base -zc
 # comment qemu command ↓ out later / remove it
-qemu-system-x86_64 -m 4G -smp 6 -cpu host -enable-kvm -vga virtio -net nic -net user -cdrom /home/monkey/artools-workspace/iso/base/artix-base-openrc-$(date -Idate | sed -e s/-//g)-x86_64.iso -hda bruh.img
+#qemu-system-x86_64 -m 4G -smp 6 -cpu host -enable-kvm -bios /usr/share/edk2-ovmf/x64/OVMF_CODE.fd -vga virtio -net nic -net user -cdrom /home/monkey/artools-workspace/iso/base/artix-base-openrc-$(date -Idate | sed -e s/-//g)-x86_64.iso -hda bruh.img

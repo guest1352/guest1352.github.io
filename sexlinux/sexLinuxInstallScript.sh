@@ -51,7 +51,7 @@ while true; do
     read mpart
     case $mpart in
         /dev/*\ /* ) read -p "mount $(echo $mpart | awk '{print $1;}') at $(echo $mpart | awk '{print $2;}')?: " mconfirm; if [ "$mconfirm" = "y" ] || \
-        [ "$mconfirm" = "Y" ] || [ "$mconfirm" = "yes" ] || [ "$mconfirm" = "Yes" ]; then mount -v \
+        [ "$mconfirm" = "Y" ] || [ "$mconfirm" = "yes" ] || [ "$mconfirm" = "Yes" ]; then mkdir -p /mnt$(echo $mpart | awk '{print $2;}') && mount -v \
         $(echo $mpart | awk '{print $1;}') /mnt$(echo $mpart | awk '{print $2;}'); else echo \
         "not mounting $(echo $mpart | awk '{print $1;}') at $(echo $mpart | awk '{print $2;}')"; fi;;
         [Ee]* ) echo "Done Partitioning and Mounting."; break;;
@@ -106,8 +106,9 @@ cp -vaT /run/artix/bootmnt/boot/vmlinuz-$(uname -m) /mnt/boot/vmlinuz-linux
 rm /mnt/etc/fstab
 fstabgen -U /mnt >> /mnt/etc/fstab
 cat > /mnt/sexLinuxChrootScript.sh << EOF
-usermod -l $username -m -d /home/$username artix
-groupmod -n $username artix
+#!/bin/sh
+usermod -l $username -d /home/$username -m sex
+groupmod -n $username sex
 rm -rf /home/$username/.cache/sessions/
 echo '$username:$usernamepasswordcheck' | chpasswd
 echo 'root:$rootpasswordcheck' | chpasswd
@@ -119,10 +120,21 @@ touch /etc/issue
 rm -f /boot/amd-ucode.img /boot/intel-ucode.img
 mkinitcpio -P
 lsblk
-read -p "Disk to install Bootloader to (NOT PARTITION!): " DISKBOOT
-grub-install --recheck \$DISKBOOT
+while true; do
+    read -p "Are you on BIOS or UEFI?: " bu
+    case $bu in
+        [Bb]* ) read -p "Disk to install Bootloader to (NOT PARTITION!): " DISKBOOT; grub-install --recheck \$DISKBOOT; break;;
+        [Uu]* ) read -p "Enter EFI partition mount point (most likely /boot): " EFIPART; grub-install --target=x86_64-efi --efi-directory=\$EFIPART --bootloader-id=SEX; break;;
+        * ) echo "Please answer BIOS or UEFI.";;
+    esac
+done
 grub-mkconfig -o /boot/grub/grub.cfg
+userdel -r sex
 userdel -r artix
+rm -rf /home/artix
+sed -i '/echo -e/d' /home/$username/.config/fish/config.fish
+sed -i '/echo -e/d' /root/.config/fish/config.fish
+sed -i 's|:NOPASSWD||' /etc/sudoers.d/g_wheel
 pacman-key --init
 pacman-key --populate artix
 pacman-key --populate archlinux
