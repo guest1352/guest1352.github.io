@@ -70,7 +70,7 @@ pacman-key --init
 pacman-key --populate artix
 pacman-key --populate archlinux
 pacman-key --lsign-key 78C9C713EAD7BEC69087447332E21894258C6105
-pacman --noconfirm -Syu --needed xfce4 gparted sddm-openrc elogind librsvg alacritty picom gnome-keyring fish fortune-mod lolcat firefox xorg-drivers mesa xfce4-whiskermenu-plugin networkmanager-openrc network-manager-applet
+pacman --noconfirm -Syu --needed xfce4 gparted pulseaudio xfce4-pulseaudio-plugin pavucontrol pulseaudio-alsa sddm-openrc elogind librsvg alacritty picom gnome-keyring fish fortune-mod lolcat firefox xorg-drivers mesa xfce4-whiskermenu-plugin networkmanager-openrc network-manager-applet
 chsh -s /usr/bin/fish
 echo "sex:sex" | chpasswd
 su sex -c "echo 'sex' | chsh -s /usr/bin/fish"
@@ -228,4 +228,4 @@ cp nigs.png /var/lib/artools/buildiso/base/iso/boot/grub/themes/artix/background
 cp babunga.png /var/lib/artools/buildiso/base/iso/boot/grub/themes/artix/logo.png
 buildiso -p base -zc
 # comment qemu command ↓ out later / remove it
-#qemu-system-x86_64 -m 4G -smp 6 -cpu host -enable-kvm -bios /usr/share/edk2-ovmf/x64/OVMF_CODE.fd -vga virtio -net nic -net user -cdrom /home/monkey/artools-workspace/iso/base/artix-base-openrc-$(date -Idate | sed -e s/-//g)-x86_64.iso -hda bruh.img
+#qemu-system-x86_64 -m 4G -smp 6 -cpu host -enable-kvm -bios /usr/share/edk2-ovmf/x64/OVMF_CODE.fd -vga virtio -net nic -net user -cdrom /home/monkey/artools-workspace/iso/base/artix-base-openrc-$(date -Idate | sed -e s/-//g)-x86_64.iso -hda bruh.img  -device ich9-intel-hda,addr=1f.1 -audiodev pa,id=snd0 -device hda-output,audiodev=snd0

@@ -39,14 +39,15 @@ if ! is_user_root; then
     echo "You need to run this as root!"
     exit 1
 fi
-read -p "Press Enter to Start Installation"
+read -sp "Press Enter to Start Installation"
 
 # partitioning #
 
 echo "Partition your Drive. When done close gparted."
 gparted
 lsblk
-echo "Enter Partition and Mount point (ex. /dev/sda1 /boot) Type 'exit' when you're done"
+echo "Enter Partition and Mount point (ex. /dev/sda1 /) Type 'exit' when you're done"
+echo "IMPORTANT: IF YOU MOUNT /boot , /home , /usr etc. BEFORE MOUNTING THE ROOT PARTITION THEY WILL NOT BE WRITTEN TO!"
 while true; do
     read mpart
     case $mpart in
@@ -55,7 +56,7 @@ while true; do
         $(echo $mpart | awk '{print $1;}') /mnt$(echo $mpart | awk '{print $2;}'); else echo \
         "not mounting $(echo $mpart | awk '{print $1;}') at $(echo $mpart | awk '{print $2;}')"; fi;;
         [Ee]* ) echo "Done Partitioning and Mounting."; break;;
-        * ) echo "Enter Partition and Mount point (ex. /dev/sda1 /boot) Type 'exit' when you're done";;
+        * ) echo "Enter Partition and Mount point (ex. /dev/sda1 /) Type 'exit' when you're done";;
     esac
 done
 
@@ -122,7 +123,7 @@ mkinitcpio -P
 lsblk
 while true; do
     read -p "Are you on BIOS or UEFI?: " bu
-    case $bu in
+    case \$bu in
         [Bb]* ) read -p "Disk to install Bootloader to (NOT PARTITION!): " DISKBOOT; grub-install --recheck \$DISKBOOT; break;;
         [Uu]* ) read -p "Enter EFI partition mount point (most likely /boot): " EFIPART; grub-install --target=x86_64-efi --efi-directory=\$EFIPART --bootloader-id=SEX; break;;
         * ) echo "Please answer BIOS or UEFI.";;
