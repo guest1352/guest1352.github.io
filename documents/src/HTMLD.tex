@@ -1,0 +1,99 @@
+\documentclass{article}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{graphicx}
+
+\author{Monkey Man}
+\title{How to make a Linux Distro}
+\date{June 01 2021}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Introduction/Foreword (havent decided yet, still needs to be fleshed out anyway)}
+\begin{center}
+	\textit{\textbf{Why would you want to make your own Linux Distro?}}
+
+	When needing to deploy multiple Systems it can sometimes be easier to just run the installer of your own Linux Distro and be done with it, instead of having to either do it Manually or use a Script. It can also be very fun!
+	\\And it can help you learn the inner workings of a Linux Distro.
+
+	\textit{\textbf{i gotta add more shit here!}}
+\end{center}
+
+\section{From Scratch}
+\textbf{NOT RECOMMENDED!}
+\subsection{The Base}
+\begin{center}
+	Depending on how minimal you want your Distro to be, it is \textbf{Very reccommended} that you follow the \ahref{https://linuxfromscratch.org/lfs}{Linux from Scratch Book}
+
+	The \ahref{https://linuxfromscratch.org/lfs}{Linux from Scratch Book} is already \textbf{Very, Very} Minimal, so we will be going through the \textbf{ABSOLUTE MINIMUM} for a ``working'' Linux System 
+\end{center}
+		\subsubsection{Workspace}
+			Create a Folder for the Workspace and make all needed Folders
+			
+			\begin{lstlisting}
+	mkdir -v <WorkspaceDirectory>
+	cd <WorkspaceDirectory>
+	mkdir -v rootfs
+			\end{lstlisting}
+
+			It can be very helpful to use a tool like \ahref{https://git-scm.com}{git} to easily revert changes
+		\subsubsection{Linux Kernel}
+
+			Download and Extract the Linux Kernel (There probably will be newer kernels than the one on the link shown here. If you want a newer Linux Kernel go to \ahref{https://www.kernel.org}{The linux kernel Website} and download it from there.)
+			\begin{lstlisting}
+	wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.12.8.tar.xz
+	tar -xvf linux-5.12.8.tar.xz
+	cd linux-5.12.8
+			\end{lstlisting}
+			Now we need to \textbf{Compile and Configure} the Kernel, depending on what this must run on this can be either very Simple or Complex and Time Consuming.
+			\begin{lstlisting}
+	make mrproper
+	make defconfig
+	make menuconfig
+			\end{lstlisting}
+			For documentation on comfiguring the Linux Kernel, check out \ahref{https://linuxfromscratch.org/lfs/view/stable/chapter10/kernel.html}{This} Segment of the Linux From Scratch Book and the \ahref{https://wiki.gentoo.org/wiki/Kernel/Configuration}{Gentoo wiki Page} on Configuring the Kernel
+			\begin{lstlisting}
+	make -j<threads to be used> # use the command "nproc --all" to find out how many Threads are on your System
+	cp -iv arch/x86/boot/bzImage ../vmlinuz
+	cd ..
+			\end{lstlisting}
+			Replace ``x86'' with another Architecture if you are not compiling the x86 Linux Kernel
+		\subsubsection{Root Filesystem}
+			The first File we need is the init which will initialize the System, it needs to be an Executable program.
+			\begin{lstlisting}
+	# Edit init.c with your favorite Text Editor #
+	
+	#include <stdio.h>
+	#include <unistd.d>
+
+	int main() {
+		printf("Hello, Linux World!\n");
+		sleep(0xFFFFFFFF);
+		return 0;
+	}
+
+	# Edit init.c with your favorite Text Editor #
+	gcc -static init.c -o rootfs/init
+			\end{lstlisting}
+			\subsubsection{Booting}
+			\begin{lstlisting}
+	(cd rootfs && find . | cpio -o -H newc | gzip > ../rootfs.cpio.gz)
+	qemu-system-x86_64 <other qemu parameters (for example: -m 128M)> -kernel vmlinuz -initrd rootfs.cpio.gz
+			\end{lstlisting}
+			When booted, it should print out ``Hello, Linux World!'' as shown here.
+			\\
+			\includegraphics{HelloLinuxWorld.png}
+		
+		\subsection{Adding Programs}
+		\subsection{The BootLoader}
+		\subsection{Making an Installer}
+\section{Arch Based}
+\section{Debian Based}
+\section{Ubuntu Based}
+\section{Branding}
+\section{Other Documentation}
+\end{document}

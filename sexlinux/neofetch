@@ -59,7 +59,7 @@ print_info() {
     info "OwOst~" model
     info "Kewnew~" kernel
     info "UwUtwime~" uptime
-    prin "$(color 5)Pwackwajes~:$(color 2) $(wc -l '/usr/share/reposn/installedpkgs' | cut -d ' ' -f1)"
+    info "Pwackwajes~" packages
     info "Shweww~" shell
     info "WesOwOshion~" resolution
     info "DE~" de

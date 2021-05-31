@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="generator" content="hevea 2.35">
+<style type="text/css">
+.equationcontainer{position:relative;}
+.equationnumber{float:right;left:auto;position:absolute;right:0}
+.equationnumber-valign{float:right;left:auto;position:absolute;right:0;margin-top:-0.5em;}
+.floatrule{background-color: black; border: none; height: 1px; width: 80%}
+.phantom{display: inline-block; visibility: hidden}
+.hphantom{display: inline-block; height: 0; visibility: hidden}
+.vphantom{display: inline-block; visibility: hidden; width: 0}
+.smash{display: inline-block; height: 0; line-height: 0}
+.li-itemize{margin:1ex 0ex;}
+.li-enumerate{margin:1ex 0ex;}
+.dd-description{margin:0ex 0ex 1ex 4ex;}
+.dt-description{margin:0ex;}
+.toc{list-style:none;}
+.footnotetext{margin:0ex; padding:0ex;}
+div.footnotetext P{margin:0px; text-indent:1em;}
+.thefootnotes{text-align:left;margin:0ex;}
+.dt-thefootnotes{margin:0em;}
+.dd-thefootnotes{margin:0em 0em 0em 2em;}
+.footnoterule{background-color: black; border: none; height: 1px; margin: 1em auto 1em 0px; width: 40%}
+.caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}
+.title{margin:2ex auto;text-align:center}
+.titlemain{margin:1ex 2ex 2ex 1ex;}
+.titlerest{margin:0ex 2ex;}
+.center{text-align:center;margin-left:auto;margin-right:auto;}
+.flushleft{text-align:left;margin-left:0ex;margin-right:auto;}
+.flushright{text-align:right;margin-left:auto;margin-right:0ex;}
+div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}
+td table{margin:auto;}
+table{border-collapse:collapse;}
+td{padding:0;}
+.cellpadding0 tr td{padding:0;}
+.cellpadding1 tr td{padding:1px;}
+pre{text-align:left;margin-left:0ex;margin-right:auto;}
+blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}
+td p{margin:0px;}
+.quote{margin-left:3em;margin-right:3em;text-align:inherit;text-indent:0pt}
+.quotation{margin-left:3em;margin-right:3em;text-align:inherit;text-indent:1.5em}
+.verse{margin-left:3em;margin-right:3em;text-indent:1.5em hanging each-line}
+.parbox{box-sizing: border-box;
+display: inline-block;
+text-indent: 0;
+}
+.rule-rect{fill: black;}
+.lrbox{box-sizing:border-box;display:inline-block;overflow:visible;white-space:nowrap;}
+.center-lrbox{display:inline-block;margin-left:50%;transform:translateX(-50%);}
+.makebox{}
+.framebox{border:1px solid black;padding:0.25em;}
+.vertical-rule{border:none;width:2px;background-color:black;}
+.horizontal-rule{border:none;background-color:black;}
+.hrule{border:none;height:2px;width:100%;background-color:black;}
+.hfill{border:none;height:1px;width:200%;background-color:black;}
+.vdisplay{border-collapse:separate;border-spacing:2px;line-height:1.1;width:auto; empty-cells:show; border:2px solid red;}
+.vdcell{white-space:nowrap;padding:0px; border:2px solid green;}
+.display{border-collapse:separate;border-spacing:2px;line-height:1.1;width:auto; border:none;}
+.dcell{white-space:nowrap;padding:0px; border:none;}
+.dcenter{margin:0ex auto;}
+.vdcenter{border:solid #FF8000 2px; margin:0ex auto;}
+.minipage{text-align:left; margin-left:0em; margin-right:auto;}
+.marginpar{border:solid thin black; margin-bottom:1ex; width:20%; text-align:left;}
+.marginparleft{float:left; clear:left; margin-left:0ex; margin-right:1ex;}
+.marginparright{float:right; clear:right; margin-left:1ex; margin-right:0ex;}
+.theorem{text-align:left;margin:1ex auto 1ex 0ex;}
+.part{margin:2ex auto;text-align:center}
+.lstlisting{font-family:monospace;white-space:pre;margin-right:auto;margin-left:0pt;text-align:left}
+</style>
+<title>How to make a Linux Distro
+</title>
+</head>
+<body >
+<!--HEVEA command line is: hevea src/HTMLD.tex -o HTMLD/index.html -->
+<!--CUT STYLE article--><!--CUT DEF section 1 --><table class="title"><tr><td style="padding:1ex"><h1 class="titlemain">How to make a Linux Distro</h1><h3 class="titlerest">Monkey Man</h3><h3 class="titlerest">June 01 2021</h3></td></tr>
+</table><!--TOC section id="sec1" Contents-->
+<h2 id="sec1" class="section">Contents</h2><!--SEC END --><ul class="toc"><li class="li-toc">
+<a href="#sec2">1&#X2003;Introduction/Foreword (havent decided yet, still needs to be fleshed out anyway)</a>
+</li><li class="li-toc"><a href="#sec3">2&#X2003;From Scratch</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec4">2.1&#X2003;The Base</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec5">2.1.1&#X2003;Workspace</a>
+</li><li class="li-toc"><a href="#sec6">2.1.2&#X2003;Linux Kernel</a>
+</li><li class="li-toc"><a href="#sec7">2.1.3&#X2003;Root Filesystem</a>
+</li><li class="li-toc"><a href="#sec8">2.1.4&#X2003;Booting</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec9">2.2&#X2003;Adding Programs</a>
+</li><li class="li-toc"><a href="#sec10">2.3&#X2003;The BootLoader</a>
+</li><li class="li-toc"><a href="#sec11">2.4&#X2003;Making an Installer</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec12">3&#X2003;Arch Based</a>
+</li><li class="li-toc"><a href="#sec13">4&#X2003;Debian Based</a>
+</li><li class="li-toc"><a href="#sec14">5&#X2003;Ubuntu Based</a>
+</li><li class="li-toc"><a href="#sec15">6&#X2003;Branding</a>
+</li><li class="li-toc"><a href="#sec16">7&#X2003;Other Documentation</a>
+</li></ul>
+<!--TOC section id="sec2" Introduction/Foreword (havent decided yet, still needs to be fleshed out anyway)-->
+<h2 id="sec2" class="section">1&#X2003;Introduction/Foreword (havent decided yet, still needs to be fleshed out anyway)</h2><!--SEC END --><div class="center">
+	<span style="font-style:italic"><span style="font-weight:bold">Why would you want to make your own Linux Distro?</span></span><p>	When needing to deploy multiple Systems it can sometimes be easier to just run the installer of your own Linux Distro and be done with it, instead of having to either do it Manually or use a Script. It can also be very fun!
+	<br>
+And it can help you learn the inner workings of a Linux Distro.</p><p>	<span style="font-style:italic"><span style="font-weight:bold">i gotta add more shit here!</span></span>
+</p></div>
+<!--TOC section id="sec3" From Scratch-->
+<h2 id="sec3" class="section">2&#X2003;From Scratch</h2><!--SEC END --><p>
+<span style="font-weight:bold">NOT RECOMMENDED!</span>
+</p>
+<!--TOC subsection id="sec4" The Base-->
+<h3 id="sec4" class="subsection">2.1&#X2003;The Base</h3><!--SEC END --><div class="center">
+	Depending on how minimal you want your Distro to be, it is <span style="font-weight:bold">Very reccommended</span> that you follow the <a href="https://linuxfromscratch.org/lfs">Linux from Scratch Book</a><p>	The <a href="https://linuxfromscratch.org/lfs">Linux from Scratch Book</a> is already <span style="font-weight:bold">Very, Very</span> Minimal, so we will be going through the <span style="font-weight:bold">ABSOLUTE MINIMUM</span> for a &#X201C;working&#X201D; Linux System 
+</p></div><p>
+		</p>
+<!--TOC subsubsection id="sec5" Workspace-->
+<h4 id="sec5" class="subsubsection">2.1.1&#X2003;Workspace</h4><!--SEC END --><p>
+			Create a Folder for the Workspace and make all needed Folders
+			
+			</p><div class="lstlisting">        mkdir -v &lt;WorkspaceDirectory&gt;
+        cd &lt;WorkspaceDirectory&gt;
+        mkdir -v rootfs</div><p>			It can be very helpful to use a tool like <a href="https://git-scm.com">git</a> to easily revert changes
+		</p>
+<!--TOC subsubsection id="sec6" Linux Kernel-->
+<h4 id="sec6" class="subsubsection">2.1.2&#X2003;Linux Kernel</h4><!--SEC END --><p>			Download and Extract the Linux Kernel (There probably will be newer kernels than the one on the link shown here. If you want a newer Linux Kernel go to <a href="https://www.kernel.org">The linux kernel Website</a> and download it from there.)
+			</p><div class="lstlisting">        wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.12.8.tar.xz
+        tar -xvf linux-5.12.8.tar.xz
+        cd linux-5.12.8</div><p>			Now we need to <span style="font-weight:bold">Compile and Configure</span> the Kernel, depending on what this must run on this can be either very Simple or Complex and Time Consuming.
+			</p><div class="lstlisting">        make mrproper
+        make defconfig
+        make menuconfig</div><p>			For documentation on comfiguring the Linux Kernel, check out <a href="https://linuxfromscratch.org/lfs/view/stable/chapter10/kernel.html">This</a> Segment of the Linux From Scratch Book and the <a href="https://wiki.gentoo.org/wiki/Kernel/Configuration">Gentoo wiki Page</a> on Configuring the Kernel
+			</p><div class="lstlisting">        make -j&lt;threads to be used&gt; # use the command "nproc --all" to find out how many Threads are on your System
+        cp -iv arch/x86/boot/bzImage ../vmlinuz
+        cd ..</div><p>			Replace &#X201C;x86&#X201D; with another Architecture if you are not compiling the x86 Linux Kernel
+		</p>
+<!--TOC subsubsection id="sec7" Root Filesystem-->
+<h4 id="sec7" class="subsubsection">2.1.3&#X2003;Root Filesystem</h4><!--SEC END --><p>
+			The first File we need is the init which will initialize the System, it needs to be an Executable program.
+			</p><div class="lstlisting">        # Edit init.c with your favorite Text Editor #
+
+        #include &lt;stdio.h&gt;
+        #include &lt;unistd.d&gt;
+
+        int main() {
+                printf("Hello, Linux World!\n");
+                sleep(0xFFFFFFFF);
+                return 0;
+        }
+
+        # Edit init.c with your favorite Text Editor #
+        gcc -static init.c -o rootfs/init</div><p>			</p>
+<!--TOC subsubsection id="sec8" Booting-->
+<h4 id="sec8" class="subsubsection">2.1.4&#X2003;Booting</h4><!--SEC END --><p>
+			</p><div class="lstlisting">        (cd rootfs &amp;&amp; find . | cpio -o -H newc | gzip &gt; ../rootfs.cpio.gz)
+        qemu-system-x86_64 &lt;other qemu parameters (for example: -m 128M)&gt; -kernel vmlinuz -initrd rootfs.cpio.gz</div><p>			When booted, it should print out &#X201C;Hello, Linux World!&#X201D; as shown here.
+			<br>
+			<img src="index001.png">
+		
+		</p>
+<!--TOC subsection id="sec9" Adding Programs-->
+<h3 id="sec9" class="subsection">2.2&#X2003;Adding Programs</h3><!--SEC END --><p>
+		</p>
+<!--TOC subsection id="sec10" The BootLoader-->
+<h3 id="sec10" class="subsection">2.3&#X2003;The BootLoader</h3><!--SEC END --><p>
+		</p>
+<!--TOC subsection id="sec11" Making an Installer-->
+<h3 id="sec11" class="subsection">2.4&#X2003;Making an Installer</h3><!--SEC END -->
+<!--TOC section id="sec12" Arch Based-->
+<h2 id="sec12" class="section">3&#X2003;Arch Based</h2><!--SEC END -->
+<!--TOC section id="sec13" Debian Based-->
+<h2 id="sec13" class="section">4&#X2003;Debian Based</h2><!--SEC END -->
+<!--TOC section id="sec14" Ubuntu Based-->
+<h2 id="sec14" class="section">5&#X2003;Ubuntu Based</h2><!--SEC END -->
+<!--TOC section id="sec15" Branding-->
+<h2 id="sec15" class="section">6&#X2003;Branding</h2><!--SEC END -->
+<!--TOC section id="sec16" Other Documentation-->
+<h2 id="sec16" class="section">7&#X2003;Other Documentation</h2><!--SEC END --><!--CUT END -->
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<hr class="horizontal-rule" style="height:2px"><blockquote class="quote"><em>This document was translated from L<sup>A</sup>T<sub>E</sub>X by
+</em><a href="http://hevea.inria.fr/index.html"><em>H</em><em><span style="font-size:small"><sup>E</sup></span></em><em>V</em><em><span style="font-size:small"><sup>E</sup></span></em><em>A</em></a><em>.</em></blockquote></body>
+</html>
