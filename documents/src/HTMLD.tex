@@ -13,24 +13,20 @@
 \maketitle
 \tableofcontents
 
-\section{Introduction/Foreword (havent decided yet, still needs to be fleshed out anyway)}
-\begin{center}
+\section{Foreword}
 	\textit{\textbf{Why would you want to make your own Linux Distro?}}
 
 	When needing to deploy multiple Systems it can sometimes be easier to just run the installer of your own Linux Distro and be done with it, instead of having to either do it Manually or use a Script. It can also be very fun!
 	\\And it can help you learn the inner workings of a Linux Distro.
 
 	\textit{\textbf{i gotta add more shit here!}}
-\end{center}
 
 \section{From Scratch}
 \textbf{NOT RECOMMENDED!}
 \subsection{The Base}
-\begin{center}
 	Depending on how minimal you want your Distro to be, it is \textbf{Very reccommended} that you follow the \ahref{https://linuxfromscratch.org/lfs}{Linux from Scratch Book}
 
-	The \ahref{https://linuxfromscratch.org/lfs}{Linux from Scratch Book} is already \textbf{Very, Very} Minimal, so we will be going through the \textbf{ABSOLUTE MINIMUM} for a ``working'' Linux System 
-\end{center}
+	The \ahref{https://linuxfromscratch.org/lfs}{Linux from Scratch Book} is already \textbf{Very, Very} Minimal, so we will be going through the \textbf{ABSOLUTE MINIMUM} for a \textit{working} Linux System 
 		\subsubsection{Workspace}
 			Create a Folder for the Workspace and make all needed Folders
 			
@@ -89,11 +85,84 @@
 			\includegraphics{HelloLinuxWorld.png}
 		
 		\subsection{Adding Programs}
-		\subsection{The BootLoader}
+		Now we have a \textit{working} Linux System, albeit very useless.
+		So lets add a shell, in this case we will use \ahref{https://www.gnu.org/software/bash}{Bash}.
+		\subsubsection{Bash}
+		\paragraph{Dynamic Linking}
+		To dynamically compile Bash, the Linux System will need all of Bash's Dependencies, which are
+		\begin{enumerate}
+			\item glibc
+			\item ncurses
+			\item readline
+		\end{enumerate}
+		And you will of course need the Dependencies of those Programs as well.
+		\\
+		You could also follow the \ahref{https://linuxfromscratch.org/lfs/view/stable/chapter05/binutils-pass1.html}{Linux from Scratch Book Compilation Segment} up until Bash.
+
+		Now, to Download and Compile Bash:
+		\\
+		Remember that there might be a newer Version of Bash on the \ahref{https://www.gnu.org/software/bash}{Bash Website}
+		\begin{lstlisting}
+	wget https://ftp.gnu.org/gnu/bash/bash-5.1.tar.gz
+	tar -xf bash-5.1.tar.gz
+	cd bash-5.1
+	./configure --prefix=/usr		    \
+		    --build=$(support/config.guess) \
+		    --host=x86_64		    \
+		    --without-bash-malloc
+	make
+	make DESTDIR=<WorkspaceDirectory>/rootfs install
+	cd ..
+		\end{lstlisting}
+		Replace ``x86_64'' with another Architecture if you are not compiling for x86_64
+
+		Bash will now reside in /usr/bin/bash, but it should be moved to /bin/bash
+		\begin{lstlisting}
+	cd rootfs
+	mkdir -v bin
+	mv usr/bin/bash bin/bash
+		\end{lstlisting}
+		\paragraph{Static Linking}
+		Static Compilation does not need any of Bash's dependencies to be in the System, instead it is just one Singular File.
+
+		\ahref{https://www.musl-libc.org}{musl} is needed for true Static linking
+		\\ Either install it with a Package Manager of choice or build it from Source.
+
+		Set ``musl-gcc'' as the C Compiler and set CFLAGS.
+		\begin{lstlisting}
+	export CC="musl-gcc"
+	export CFLAGS="-static"
+		\end{lstlisting}
+		Now, to Download and Compile Bash:
+		\\
+		Remember that there might be a newer Version of Bash on the \ahref{https://www.gnu.org/software/bash}{Bash Website}
+		\begin{lstlisting}
+	wget https://ftp.gnu.org/gnu/bash/bash-5.1.tar.gz
+	tar -xf bash-5.1.tar.gz
+	cd bash-5.1
+	CFLAGS="$CFLAGS -Os" ./configure --prefix=/usr			 \
+					 --build=$(support/config.guess) \
+					 --host=x86_64			 \
+					 --without-bash-malloc
+	make
+	make DESTDIR=<WorkspaceDirectory>/rootfs install
+	cd ..
+		\end{lstlisting}
+		Replace ``x86_64'' with another Architecture if you are not compiling for x86_64
+
+		Bash will now reside in /usr/bin/bash, but it should be moved to /bin/bash
+		\begin{lstlisting}
+	cd rootfs
+	mkdir -v bin
+	mv usr/bin/bash bin/bash
+		\end{lstlisting}
+		\subsubsection{BusyBox}
+		\subsection{The Boot Loader}
 		\subsection{Making an Installer}
 \section{Arch Based}
 \section{Debian Based}
 \section{Ubuntu Based}
 \section{Branding}
 \section{Other Documentation}
+\section{Afterword}
 \end{document}
