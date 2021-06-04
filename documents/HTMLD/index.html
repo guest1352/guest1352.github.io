@@ -4,81 +4,34 @@
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <meta name="generator" content="hevea 2.35">
 <style type="text/css">
-.equationcontainer{position:relative;}
-.equationnumber{float:right;left:auto;position:absolute;right:0}
-.equationnumber-valign{float:right;left:auto;position:absolute;right:0;margin-top:-0.5em;}
-.floatrule{background-color: black; border: none; height: 1px; width: 80%}
-.phantom{display: inline-block; visibility: hidden}
-.hphantom{display: inline-block; height: 0; visibility: hidden}
-.vphantom{display: inline-block; visibility: hidden; width: 0}
-.smash{display: inline-block; height: 0; line-height: 0}
-.li-itemize{margin:1ex 0ex;}
+.c000{font-style:italic}
+.c001{font-style:italic;font-weight:bold}
+.c002{font-weight:bold}
 .li-enumerate{margin:1ex 0ex;}
-.dd-description{margin:0ex 0ex 1ex 4ex;}
-.dt-description{margin:0ex;}
 .toc{list-style:none;}
-.footnotetext{margin:0ex; padding:0ex;}
 div.footnotetext P{margin:0px; text-indent:1em;}
-.thefootnotes{text-align:left;margin:0ex;}
-.dt-thefootnotes{margin:0em;}
-.dd-thefootnotes{margin:0em 0em 0em 2em;}
-.footnoterule{background-color: black; border: none; height: 1px; margin: 1em auto 1em 0px; width: 40%}
-.caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}
-.title{margin:2ex auto;text-align:center}
-.titlemain{margin:1ex 2ex 2ex 1ex;}
-.titlerest{margin:0ex 2ex;}
 .center{text-align:center;margin-left:auto;margin-right:auto;}
-.flushleft{text-align:left;margin-left:0ex;margin-right:auto;}
-.flushright{text-align:right;margin-left:auto;margin-right:0ex;}
 div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}
 td table{margin:auto;}
 table{border-collapse:collapse;}
 td{padding:0;}
-.cellpadding0 tr td{padding:0;}
-.cellpadding1 tr td{padding:1px;}
 pre{text-align:left;margin-left:0ex;margin-right:auto;}
 blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}
 td p{margin:0px;}
 .quote{margin-left:3em;margin-right:3em;text-align:inherit;text-indent:0pt}
-.quotation{margin-left:3em;margin-right:3em;text-align:inherit;text-indent:1.5em}
-.verse{margin-left:3em;margin-right:3em;text-indent:1.5em hanging each-line}
-.parbox{box-sizing: border-box;
-display: inline-block;
-text-indent: 0;
-}
-.rule-rect{fill: black;}
-.lrbox{box-sizing:border-box;display:inline-block;overflow:visible;white-space:nowrap;}
-.center-lrbox{display:inline-block;margin-left:50%;transform:translateX(-50%);}
-.makebox{}
-.framebox{border:1px solid black;padding:0.25em;}
-.vertical-rule{border:none;width:2px;background-color:black;}
 .horizontal-rule{border:none;background-color:black;}
-.hrule{border:none;height:2px;width:100%;background-color:black;}
-.hfill{border:none;height:1px;width:200%;background-color:black;}
-.vdisplay{border-collapse:separate;border-spacing:2px;line-height:1.1;width:auto; empty-cells:show; border:2px solid red;}
-.vdcell{white-space:nowrap;padding:0px; border:2px solid green;}
-.display{border-collapse:separate;border-spacing:2px;line-height:1.1;width:auto; border:none;}
-.dcell{white-space:nowrap;padding:0px; border:none;}
-.dcenter{margin:0ex auto;}
-.vdcenter{border:solid #FF8000 2px; margin:0ex auto;}
-.minipage{text-align:left; margin-left:0em; margin-right:auto;}
-.marginpar{border:solid thin black; margin-bottom:1ex; width:20%; text-align:left;}
-.marginparleft{float:left; clear:left; margin-left:0ex; margin-right:1ex;}
-.marginparright{float:right; clear:right; margin-left:1ex; margin-right:0ex;}
-.theorem{text-align:left;margin:1ex auto 1ex 0ex;}
-.part{margin:2ex auto;text-align:center}
 .lstlisting{font-family:monospace;white-space:pre;margin-right:auto;margin-left:0pt;text-align:left}
 </style>
 <title>../HTMLD/index</title>
 </head>
-<body >
-<!--HEVEA command line is: hevea HTMLD.tex -o ../HTMLD/index.html -->
+<body>
+<!--HEVEA command line is: hevea HTMLD.tex -O -o ../HTMLD/index.html -->
 <!--CUT STYLE article--><!--CUT DEF section 1 --><p>
 	</p><div class="center">
-		<span style="font-size:xx-large"><span style="font-weight:bold">		How to make a Linux Distro (WIP)</span></span>
+		<span style="font-weight:bold;font-size:xx-large">		How to make a Linux Distro (WIP)</span>
 		<p>		Funy Monkey &#X2014; Last Updated: June 04 2021
 	</p></div><!--TOC section id="sec1" Contents-->
-<h2 id="sec1" class="section">Contents</h2><!--SEC END --><ul class="toc"><li class="li-toc">
+<h2 class="section" id="sec1">Contents</h2><!--SEC END --><ul class="toc"><li class="li-toc">
 <a href="#sec2">1&#X2003;Foreword</a>
 </li><li class="li-toc"><a href="#sec3">2&#X2003;From Scratch</a>
 <ul class="toc"><li class="li-toc">
@@ -111,22 +64,22 @@ text-indent: 0;
 </li><li class="li-toc"><a href="#sec27">9&#X2003;Sources</a>
 </li></ul>
 <!--TOC section id="sec2" Foreword-->
-<h2 id="sec2" class="section">1&#X2003;Foreword</h2><!--SEC END --><p>
-	<span style="font-style:italic"><span style="font-weight:bold">Why would you want to make your own Linux Distro?</span></span></p><p>	When needing to deploy multiple Systems it can sometimes be easier to just run the installer of your own Linux Distro and be done with it, instead of having to either do it Manually or use a Script. It can also be very fun!
+<h2 class="section" id="sec2">1&#X2003;Foreword</h2><!--SEC END --><p>
+	<span class="c001">Why would you want to make your own Linux Distro?</span></p><p>	When needing to deploy multiple Systems it can sometimes be easier to just run the installer of your own Linux Distro and be done with it, instead of having to either do it Manually or use a Script. It can also be very fun!
 	<br>
-And it can help you learn the inner workings of a Linux Distro.</p><p>	<span style="font-style:italic"><span style="font-weight:bold">i gotta add more shit here!</span></span></p>
+And it can help you learn the inner workings of a Linux Distro.</p><p>	<span class="c001">i gotta add more shit here!</span></p>
 <!--TOC section id="sec3" From Scratch-->
-<h2 id="sec3" class="section">2&#X2003;From Scratch</h2><!--SEC END --><p>
+<h2 class="section" id="sec3">2&#X2003;From Scratch</h2><!--SEC END --><p>
 <a id="Scratch"></a>
-<span style="font-weight:bold">NOT RECOMMENDED!</span>
+<span class="c002">NOT RECOMMENDED!</span>
 </p>
 <!--TOC subsection id="sec4" The Base-->
-<h3 id="sec4" class="subsection">2.1&#X2003;The Base</h3><!--SEC END --><p>
+<h3 class="subsection" id="sec4">2.1&#X2003;The Base</h3><!--SEC END --><p>
 	<a id="ScratchBase"></a>
-	Depending on how minimal you want your Distro to be, it is <span style="font-weight:bold">Very reccommended</span> that you follow the <a href="https://linuxfromscratch.org/lfs">Linux from Scratch Book</a></p><p>	The <a href="https://linuxfromscratch.org/lfs">Linux from Scratch Book</a> is already <span style="font-weight:bold">Very, Very</span> Minimal, so we will be going through the <span style="font-weight:bold">ABSOLUTE MINIMUM</span> for a <span style="font-style:italic">working</span> Linux System 
+	Depending on how minimal you want your Distro to be, it is <span class="c002">Very reccommended</span> that you follow the <a href="https://linuxfromscratch.org/lfs">Linux from Scratch Book</a></p><p>	The <a href="https://linuxfromscratch.org/lfs">Linux from Scratch Book</a> is already <span class="c002">Very, Very</span> Minimal, so we will be going through the <span class="c002">ABSOLUTE MINIMUM</span> for a <span class="c000">working</span> Linux System 
 		</p>
 <!--TOC subsubsection id="sec5" Workspace-->
-<h4 id="sec5" class="subsubsection">2.1.1&#X2003;Workspace</h4><!--SEC END --><p>
+<h4 class="subsubsection" id="sec5">2.1.1&#X2003;Workspace</h4><!--SEC END --><p>
 			Create a Folder for the Workspace and make all needed Folders
 			
 			</p><div class="lstlisting">        mkdir -v &lt;WorkspaceDirectory&gt;
@@ -134,10 +87,10 @@ And it can help you learn the inner workings of a Linux Distro.</p><p>	<span sty
         mkdir -v rootfs</div><p>			It can be very helpful to use a tool like <a href="https://git-scm.com">git</a> to easily revert changes
 		</p>
 <!--TOC subsubsection id="sec6" Linux Kernel-->
-<h4 id="sec6" class="subsubsection">2.1.2&#X2003;Linux Kernel</h4><!--SEC END --><p>			Download and Extract the Linux Kernel (There probably will be newer kernels than the one on the link shown here. If you want a newer Linux Kernel go to <a href="https://www.kernel.org">The linux kernel Website</a> and download it from there.)
+<h4 class="subsubsection" id="sec6">2.1.2&#X2003;Linux Kernel</h4><!--SEC END --><p>			Download and Extract the Linux Kernel (There probably will be newer kernels than the one on the link shown here. If you want a newer Linux Kernel go to <a href="https://www.kernel.org">The linux kernel Website</a> and download it from there.)
 			</p><div class="lstlisting">        wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.12.8.tar.xz
         tar -xvf linux-5.12.8.tar.xz
-        cd linux-5.12.8</div><p>			Now we need to <span style="font-weight:bold">Compile and Configure</span> the Kernel, depending on what this must run on this can be either very Simple or Complex and Time Consuming.
+        cd linux-5.12.8</div><p>			Now we need to <span class="c002">Compile and Configure</span> the Kernel, depending on what this must run on this can be either very Simple or Complex and Time Consuming.
 			</p><div class="lstlisting">        make mrproper
         make defconfig
         make menuconfig</div><p>			For documentation on comfiguring the Linux Kernel, check out <a href="https://linuxfromscratch.org/lfs/view/stable/chapter10/kernel.html">This</a> Segment of the Linux From Scratch Book and the <a href="https://wiki.gentoo.org/wiki/Kernel/Configuration">Gentoo wiki Page</a> on Configuring the Kernel
@@ -146,7 +99,7 @@ And it can help you learn the inner workings of a Linux Distro.</p><p>	<span sty
         cd ..</div><p>			Replace &#X201C;x86&#X201D; with another Architecture if you are not compiling the x86 Linux Kernel
 		</p>
 <!--TOC subsubsection id="sec7" Root Filesystem-->
-<h4 id="sec7" class="subsubsection">2.1.3&#X2003;Root Filesystem</h4><!--SEC END --><p>
+<h4 class="subsubsection" id="sec7">2.1.3&#X2003;Root Filesystem</h4><!--SEC END --><p>
 			The first File we need is the init which will initialize the System, it needs to be an Executable program.
 			</p><div class="lstlisting">        # Edit init.c with your favorite Text Editor #
 
@@ -162,7 +115,7 @@ And it can help you learn the inner workings of a Linux Distro.</p><p>	<span sty
         # Edit init.c with your favorite Text Editor #
         gcc -static init.c -o rootfs/init</div><p>			</p>
 <!--TOC subsubsection id="sec8" Booting-->
-<h4 id="sec8" class="subsubsection">2.1.4&#X2003;Booting</h4><!--SEC END --><p>
+<h4 class="subsubsection" id="sec8">2.1.4&#X2003;Booting</h4><!--SEC END --><p>
 			</p><div class="lstlisting">        (cd rootfs &amp;&amp; find . | cpio -o -H newc | gzip &gt; ../rootfs.cpio.gz)
         qemu-system-x86_64 &lt;other qemu parameters (for example: -m 128M)&gt; -kernel vmlinuz -initrd rootfs.cpio.gz</div><p>			When booted, it should print out &#X201C;Hello, Linux World!&#X201D; as shown here.
 			<br>
@@ -170,16 +123,16 @@ And it can help you learn the inner workings of a Linux Distro.</p><p>	<span sty
 		
 		</p>
 <!--TOC subsection id="sec9" Adding Programs-->
-<h3 id="sec9" class="subsection">2.2&#X2003;Adding Programs</h3><!--SEC END --><p>
-		Now we have a <span style="font-style:italic">working</span> Linux System, albeit very useless.
+<h3 class="subsection" id="sec9">2.2&#X2003;Adding Programs</h3><!--SEC END --><p>
+		Now we have a <span class="c000">working</span> Linux System, albeit very useless.
 		So lets add a shell, in this case we will use <a href="https://www.gnu.org/software/bash">Bash</a>.
 		</p>
 <!--TOC subsubsection id="sec10" Bash-->
-<h4 id="sec10" class="subsubsection">2.2.1&#X2003;Bash</h4><!--SEC END --><p>
+<h4 class="subsubsection" id="sec10">2.2.1&#X2003;Bash</h4><!--SEC END --><p>
 		<a id="ScratchAddBash"></a>
 		</p>
 <!--TOC paragraph id="sec11" Dynamic Linking-->
-<h4 id="sec11" class="paragraph">Dynamic Linking</h4><!--SEC END --><p>
+<h4 class="paragraph" id="sec11">Dynamic Linking</h4><!--SEC END --><p>
 		To dynamically compile Bash, the Linux System will need all of Bash&#X2019;s Dependencies, which are
 		</p><ol class="enumerate" type=1><li class="li-enumerate">
 			glibc
@@ -205,7 +158,7 @@ And it can help you learn the inner workings of a Linux Distro.</p><p>	<span sty
         mkdir -v bin
         mv usr/bin/bash bin/bash</div><p>		</p>
 <!--TOC paragraph id="sec12" Static Linking-->
-<h4 id="sec12" class="paragraph">Static Linking</h4><!--SEC END --><p>
+<h4 class="paragraph" id="sec12">Static Linking</h4><!--SEC END --><p>
 		Static Compilation does not need any of Bash&#X2019;s dependencies to be in the System, instead it is just one Singular File.</p><p>		<a href="https://www.musl-libc.org">musl</a> is needed for true Static linking
 		<br>
 Either install it with a Package Manager of choice or build it from Source.</p><p>		Set &#X201C;musl-gcc&#X201D; as the C Compiler and set CFLAGS.
@@ -227,57 +180,57 @@ Either install it with a Package Manager of choice or build it from Source.</p><
         mkdir -v bin
         mv usr/bin/bash bin/bash</div><p>		</p>
 <!--TOC subsubsection id="sec13" BusyBox-->
-<h4 id="sec13" class="subsubsection">2.2.2&#X2003;BusyBox</h4><!--SEC END --><p>
+<h4 class="subsubsection" id="sec13">2.2.2&#X2003;BusyBox</h4><!--SEC END --><p>
 		</p>
 <!--TOC subsubsection id="sec14" Package Manager-->
-<h4 id="sec14" class="subsubsection">2.2.3&#X2003;Package Manager</h4><!--SEC END --><p>
+<h4 class="subsubsection" id="sec14">2.2.3&#X2003;Package Manager</h4><!--SEC END --><p>
 		</p>
 <!--TOC paragraph id="sec15" Dynamic Linking-->
-<h4 id="sec15" class="paragraph">Dynamic Linking</h4><!--SEC END --><p>
+<h4 class="paragraph" id="sec15">Dynamic Linking</h4><!--SEC END --><p>
 		</p>
 <!--TOC paragraph id="sec16" Static Linking-->
-<h4 id="sec16" class="paragraph">Static Linking</h4><!--SEC END --><p>
+<h4 class="paragraph" id="sec16">Static Linking</h4><!--SEC END --><p>
 		</p>
 <!--TOC subsection id="sec17" The Boot Loader-->
-<h3 id="sec17" class="subsection">2.3&#X2003;The Boot Loader</h3><!--SEC END --><p>
+<h3 class="subsection" id="sec17">2.3&#X2003;The Boot Loader</h3><!--SEC END --><p>
 		</p>
 <!--TOC subsection id="sec18" Making an Installer-->
-<h3 id="sec18" class="subsection">2.4&#X2003;Making an Installer</h3><!--SEC END -->
+<h3 class="subsection" id="sec18">2.4&#X2003;Making an Installer</h3><!--SEC END -->
 <!--TOC section id="sec19" Arch Based-->
-<h2 id="sec19" class="section">3&#X2003;Arch Based</h2><!--SEC END --><p>
-<span style="font-weight:bold">You can either generate an Arch Linux ISO with </span><a href="#Archiso"><span style="font-weight:bold">3.1</span></a><span style="font-weight:bold"> Archiso or </span><a href="#ArchIsoEdit"><span style="font-weight:bold">3.2</span></a><span style="font-weight:bold"> edit an ISO from the </span><a href="https://archlinux.org/download"><span style="font-weight:bold">Arch Linux Website</span></a>
+<h2 class="section" id="sec19">3&#X2003;Arch Based</h2><!--SEC END --><p>
+<span class="c002">You can either generate an Arch Linux ISO with </span><a href="#Archiso"><span class="c002">3.1</span></a><span class="c002"> Archiso or </span><a href="#ArchIsoEdit"><span class="c002">3.2</span></a><span class="c002"> edit an ISO from the </span><a href="https://archlinux.org/download"><span class="c002">Arch Linux Website</span></a>
 </p>
 <!--TOC subsection id="sec20" Archiso-->
-<h3 id="sec20" class="subsection">3.1&#X2003;Archiso</h3><!--SEC END --><p>
+<h3 class="subsection" id="sec20">3.1&#X2003;Archiso</h3><!--SEC END --><p>
 	<a id="Archiso"></a>
-	<span style="font-weight:bold">YOU NEED TO BE ON AN ARCH LINUX SYSTEM!</span></p><p>	First install Archiso:
-	</p><div class="lstlisting">        sudo pacman -S archiso</div><p>	Archiso comes with 2 profiles, <span style="font-weight:bold">releng</span> and <span style="font-weight:bold">baseline</span>.
+	<span class="c002">YOU NEED TO BE ON AN ARCH LINUX SYSTEM!</span></p><p>	First install Archiso:
+	</p><div class="lstlisting">        sudo pacman -S archiso</div><p>	Archiso comes with 2 profiles, <span class="c002">releng</span> and <span class="c002">baseline</span>.
 	<br>
-	Copy the Profile of your Choice to a Directory of your Choice, where &lt;profile&gt; is either <span style="font-weight:bold">releng</span> or <span style="font-weight:bold">baseline</span>:
+	Copy the Profile of your Choice to a Directory of your Choice, where &lt;profile&gt; is either <span class="c002">releng</span> or <span class="c002">baseline</span>:
 	</p><div class="lstlisting">        cp -r /usr/share/archiso/configs/&lt;profile&gt; &lt;directory&gt;</div>
 <!--TOC subsection id="sec21" ISO Editing-->
-<h3 id="sec21" class="subsection">3.2&#X2003;ISO Editing</h3><!--SEC END --><p>
+<h3 class="subsection" id="sec21">3.2&#X2003;ISO Editing</h3><!--SEC END --><p>
 	<a id="ArchIsoEdit"></a>
 </p>
 <!--TOC section id="sec22" Debian Based-->
-<h2 id="sec22" class="section">4&#X2003;Debian Based</h2><!--SEC END -->
+<h2 class="section" id="sec22">4&#X2003;Debian Based</h2><!--SEC END -->
 <!--TOC section id="sec23" Ubuntu Based-->
-<h2 id="sec23" class="section">5&#X2003;Ubuntu Based</h2><!--SEC END -->
+<h2 class="section" id="sec23">5&#X2003;Ubuntu Based</h2><!--SEC END -->
 <!--TOC section id="sec24" Generic-->
-<h2 id="sec24" class="section">6&#X2003;Generic</h2><!--SEC END -->
+<h2 class="section" id="sec24">6&#X2003;Generic</h2><!--SEC END -->
 <!--TOC section id="sec25" Branding-->
-<h2 id="sec25" class="section">7&#X2003;Branding</h2><!--SEC END -->
+<h2 class="section" id="sec25">7&#X2003;Branding</h2><!--SEC END -->
 <!--TOC section id="sec26" Afterword-->
-<h2 id="sec26" class="section">8&#X2003;Afterword</h2><!--SEC END -->
+<h2 class="section" id="sec26">8&#X2003;Afterword</h2><!--SEC END -->
 <!--TOC section id="sec27" Sources-->
-<h2 id="sec27" class="section">9&#X2003;Sources</h2><!--SEC END --><p>
-<a href="#Scratch">2</a> <a href="https://www.linuxfromscratch.org/lfs">Linux From Scratch Book</a></p><p><a href="#ScratchBase">2.1</a> <a href="https://stackoverflow.com/a/30056182">Stackoverflow Answer</a> </p><p><a href="#ScratchAddBash">2.2.1</a> <span style="font-style:italic"><span style="font-weight:bold">Dynamic:</span></span>
+<h2 class="section" id="sec27">9&#X2003;Sources</h2><!--SEC END --><p>
+<a href="#Scratch">2</a> <a href="https://www.linuxfromscratch.org/lfs">Linux From Scratch Book</a></p><p><a href="#ScratchBase">2.1</a> <a href="https://stackoverflow.com/a/30056182">Stackoverflow Answer</a> </p><p><a href="#ScratchAddBash">2.2.1</a> <span class="c001">Dynamic:</span>
 <a href="https://linuxfromscratch.org/lfs/view/stable/chapter06/bash.html">Linux From Scratch Bash Page</a>
-<span style="font-style:italic"><span style="font-weight:bold">Static:</span></span> <a href="https://github.com/robxu9/bash-static/blob/master/build.sh">Static Bash Build Script</a></p><p><a href="#Archiso">3.1</a> <a href="https://wiki.archlinux.org/title/archiso">Archiso Arch Wiki Page</a>
+<span class="c001">Static:</span> <a href="https://github.com/robxu9/bash-static/blob/master/build.sh">Static Bash Build Script</a></p><p><a href="#Archiso">3.1</a> <a href="https://wiki.archlinux.org/title/archiso">Archiso Arch Wiki Page</a>
 </p><!--CUT END -->
 <!--HTMLFOOT-->
 <!--ENDHTML-->
 <!--FOOTER-->
 <hr class="horizontal-rule" style="height:2px"><blockquote class="quote"><em>This document was translated from L<sup>A</sup>T<sub>E</sub>X by
-</em><a href="http://hevea.inria.fr/index.html"><em>H</em><em><span style="font-size:small"><sup>E</sup></span></em><em>V</em><em><span style="font-size:small"><sup>E</sup></span></em><em>A</em></a><em>.</em></blockquote></body>
+</em><a href="http://hevea.inria.fr/index.html"><em>H<span style="font-size:small"><sup>E</sup></span>V<span style="font-size:small"><sup>E</sup></span>A</em></a><em>.</em></blockquote></body>
 </html>
