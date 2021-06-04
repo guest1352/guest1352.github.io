@@ -30,10 +30,6 @@ cp /etc/artools/artools-*.conf $HOME/.config/artools/
 cp -r /usr/share/artools/iso-profiles $HOME/artools-workspace/
 buildiso -p base -x
 sed -i 's|#rc_parallel="NO"|rc_parallel="YES"|' /var/lib/artools/buildiso/base/artix/rootfs/etc/rc.conf
-cat > /var/lib/artools/buildiso/base/artix/rootfs/yPacmanScc << EOF
-y
-y
-EOF
 cp SeXfce_Theme.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/usr/local/share/sexfce.tar.xz
 mkdir -p /var/lib/artools/buildiso/base/artix/rootfs/home/sex
 cp SexConfig.tar.xz /var/lib/artools/buildiso/base/artix/rootfs/home/sex/sexconfig.tar.xz
@@ -62,7 +58,7 @@ DISTRIB_DESCRIPTION="Sex Linux"
 EOF
 cat > /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh << EOF
 #!/bin/sh
-cat /yPacmanScc | pacman -Scc
+printf y\ny\n | pacman -Scc
 
 usermod -l sex -d /home/sex -m artix
 groupmod -n sex artix
@@ -219,7 +215,6 @@ if [ "$configAns" = "y" ]; then
     artix-chroot /var/lib/artools/buildiso/base/artix/rootfs /bin/bash
 fi
 rm /var/lib/artools/buildiso/base/artix/rootfs/sexLinuxChrootScript.sh
-rm /var/lib/artools/buildiso/base/artix/rootfs/yPacmanScc
 rm /var/lib/artools/buildiso/base/artix/rootfs/usr/local/share/sexfce.tar.xz
 rm /var/lib/artools/buildiso/base/artix/rootfs/home/sex/sexconfig.tar.xz
 buildiso -p base -sc
