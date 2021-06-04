@@ -98,11 +98,15 @@ text-indent: 0;
 </li><li class="li-toc"><a href="#sec17">2.4&#X2003;Making an Installer</a>
 </li></ul>
 </li><li class="li-toc"><a href="#sec18">3&#X2003;Arch Based</a>
-</li><li class="li-toc"><a href="#sec19">4&#X2003;Debian Based</a>
-</li><li class="li-toc"><a href="#sec20">5&#X2003;Ubuntu Based</a>
-</li><li class="li-toc"><a href="#sec21">6&#X2003;Branding</a>
-</li><li class="li-toc"><a href="#sec22">7&#X2003;Afterword</a>
-</li><li class="li-toc"><a href="#sec23">8&#X2003;Other Documentation</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec19">3.1&#X2003;Archiso</a>
+</li><li class="li-toc"><a href="#sec20">3.2&#X2003;ISO Editing</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec21">4&#X2003;Debian Based</a>
+</li><li class="li-toc"><a href="#sec22">5&#X2003;Ubuntu Based</a>
+</li><li class="li-toc"><a href="#sec23">6&#X2003;Branding</a>
+</li><li class="li-toc"><a href="#sec24">7&#X2003;Afterword</a>
+</li><li class="li-toc"><a href="#sec25">8&#X2003;Sources</a>
 </li></ul>
 <!--TOC section id="sec2" Foreword-->
 <h2 id="sec2" class="section">1&#X2003;Foreword</h2><!--SEC END --><p>
@@ -111,10 +115,12 @@ text-indent: 0;
 And it can help you learn the inner workings of a Linux Distro.</p><p>	<span style="font-style:italic"><span style="font-weight:bold">i gotta add more shit here!</span></span></p>
 <!--TOC section id="sec3" From Scratch-->
 <h2 id="sec3" class="section">2&#X2003;From Scratch</h2><!--SEC END --><p>
+<a id="Scratch"></a>
 <span style="font-weight:bold">NOT RECOMMENDED!</span>
 </p>
 <!--TOC subsection id="sec4" The Base-->
 <h3 id="sec4" class="subsection">2.1&#X2003;The Base</h3><!--SEC END --><p>
+	<a id="ScratchBase"></a>
 	Depending on how minimal you want your Distro to be, it is <span style="font-weight:bold">Very reccommended</span> that you follow the <a href="https://linuxfromscratch.org/lfs">Linux from Scratch Book</a></p><p>	The <a href="https://linuxfromscratch.org/lfs">Linux from Scratch Book</a> is already <span style="font-weight:bold">Very, Very</span> Minimal, so we will be going through the <span style="font-weight:bold">ABSOLUTE MINIMUM</span> for a <span style="font-style:italic">working</span> Linux System 
 		</p>
 <!--TOC subsubsection id="sec5" Workspace-->
@@ -168,6 +174,7 @@ And it can help you learn the inner workings of a Linux Distro.</p><p>	<span sty
 		</p>
 <!--TOC subsubsection id="sec10" Bash-->
 <h4 id="sec10" class="subsubsection">2.2.1&#X2003;Bash</h4><!--SEC END --><p>
+		<a id="ScratchAddBash"></a>
 		</p>
 <!--TOC paragraph id="sec11" Dynamic Linking-->
 <h4 id="sec11" class="paragraph">Dynamic Linking</h4><!--SEC END --><p>
@@ -232,17 +239,35 @@ Either install it with a Package Manager of choice or build it from Source.</p><
 <!--TOC subsection id="sec17" Making an Installer-->
 <h3 id="sec17" class="subsection">2.4&#X2003;Making an Installer</h3><!--SEC END -->
 <!--TOC section id="sec18" Arch Based-->
-<h2 id="sec18" class="section">3&#X2003;Arch Based</h2><!--SEC END -->
-<!--TOC section id="sec19" Debian Based-->
-<h2 id="sec19" class="section">4&#X2003;Debian Based</h2><!--SEC END -->
-<!--TOC section id="sec20" Ubuntu Based-->
-<h2 id="sec20" class="section">5&#X2003;Ubuntu Based</h2><!--SEC END -->
-<!--TOC section id="sec21" Branding-->
-<h2 id="sec21" class="section">6&#X2003;Branding</h2><!--SEC END -->
-<!--TOC section id="sec22" Afterword-->
-<h2 id="sec22" class="section">7&#X2003;Afterword</h2><!--SEC END -->
-<!--TOC section id="sec23" Other Documentation-->
-<h2 id="sec23" class="section">8&#X2003;Other Documentation</h2><!--SEC END --><!--CUT END -->
+<h2 id="sec18" class="section">3&#X2003;Arch Based</h2><!--SEC END --><p>
+<span style="font-weight:bold">You can either generate an Arch Linux ISO with </span><a href="#Archiso"><span style="font-weight:bold">3.1</span></a><span style="font-weight:bold"> Archiso or </span><a href="#ArchIsoEdit"><span style="font-weight:bold">3.2</span></a><span style="font-weight:bold"> edit an ISO from the </span><a href="https://archlinux.org/download"><span style="font-weight:bold">Arch Linux Website</span></a>
+</p>
+<!--TOC subsection id="sec19" Archiso-->
+<h3 id="sec19" class="subsection">3.1&#X2003;Archiso</h3><!--SEC END --><p>
+	<a id="Archiso"></a>
+	<span style="font-weight:bold">YOU NEED TO BE ON AN ARCH LINUX SYSTEM!</span></p><p>	First install Archiso:
+	</p><div class="lstlisting">        sudo pacman -S archiso</div><p>	Archiso comes with 2 profiles, <span style="font-weight:bold">releng</span> and <span style="font-weight:bold">baseline</span>.
+	<br>
+	Copy the Profile of your Choice to a Directory of your Choice, where &lt;profile&gt; is either <span style="font-weight:bold">releng</span> or <span style="font-weight:bold">baseline</span>:
+	</p><div class="lstlisting">        cp -r /usr/share/archiso/configs/&lt;profile&gt; &lt;directory&gt;</div>
+<!--TOC subsection id="sec20" ISO Editing-->
+<h3 id="sec20" class="subsection">3.2&#X2003;ISO Editing</h3><!--SEC END --><p>
+	<a id="ArchIsoEdit"></a>
+</p>
+<!--TOC section id="sec21" Debian Based-->
+<h2 id="sec21" class="section">4&#X2003;Debian Based</h2><!--SEC END -->
+<!--TOC section id="sec22" Ubuntu Based-->
+<h2 id="sec22" class="section">5&#X2003;Ubuntu Based</h2><!--SEC END -->
+<!--TOC section id="sec23" Branding-->
+<h2 id="sec23" class="section">6&#X2003;Branding</h2><!--SEC END -->
+<!--TOC section id="sec24" Afterword-->
+<h2 id="sec24" class="section">7&#X2003;Afterword</h2><!--SEC END -->
+<!--TOC section id="sec25" Sources-->
+<h2 id="sec25" class="section">8&#X2003;Sources</h2><!--SEC END --><p>
+<a href="#Scratch">2</a> <a href="https://www.linuxfromscratch.org/lfs">Linux From Scratch Book</a></p><p><a href="#ScratchBase">2.1</a> <a href="https://stackoverflow.com/a/30056182">Stackoverflow Answer</a> </p><p><a href="#ScratchAddBash">2.2.1</a> <span style="font-style:italic"><span style="font-weight:bold">Dynamic:</span></span>
+<a href="https://linuxfromscratch.org/lfs/view/stable/chapter06/bash.html">Linux From Scratch Bash Page</a>
+<span style="font-style:italic"><span style="font-weight:bold">Static:</span></span> <a href="https://github.com/robxu9/bash-static/blob/master/build.sh">Static Bash Build Script</a></p><p><a href="#Archiso">3.1</a> <a href="https://wiki.archlinux.org/title/archiso">Archiso Arch Wiki Page</a>
+</p><!--CUT END -->
 <!--HTMLFOOT-->
 <!--ENDHTML-->
 <!--FOOTER-->

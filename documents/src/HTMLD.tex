@@ -27,8 +27,10 @@
 	\textit{\textbf{i gotta add more shit here!}}
 
 \section{From Scratch}
+\label{Scratch}
 \textbf{NOT RECOMMENDED!}
 \subsection{The Base}
+	\label{ScratchBase}
 	Depending on how minimal you want your Distro to be, it is \textbf{Very reccommended} that you follow the \ahref{https://linuxfromscratch.org/lfs}{Linux from Scratch Book}
 
 	The \ahref{https://linuxfromscratch.org/lfs}{Linux from Scratch Book} is already \textbf{Very, Very} Minimal, so we will be going through the \textbf{ABSOLUTE MINIMUM} for a \textit{working} Linux System 
@@ -93,6 +95,7 @@
 		Now we have a \textit{working} Linux System, albeit very useless.
 		So lets add a shell, in this case we will use \ahref{https://www.gnu.org/software/bash}{Bash}.
 		\subsubsection{Bash}
+		\label{ScratchAddBash}
 		\paragraph{Dynamic Linking}
 		To dynamically compile Bash, the Linux System will need all of Bash's Dependencies, which are
 		\begin{enumerate}
@@ -167,9 +170,36 @@
 		\subsection{The Boot Loader}
 		\subsection{Making an Installer}
 \section{Arch Based}
+\textbf{You can either generate an Arch Linux ISO with \ref{Archiso} Archiso or \ref{ArchIsoEdit} edit an ISO from the \ahref{https://archlinux.org/download}{Arch Linux Website}}
+\subsection{Archiso}
+	\label{Archiso}
+	\textbf{YOU NEED TO BE ON AN ARCH LINUX SYSTEM!}
+
+	First install Archiso:
+	\begin{lstlisting}
+	sudo pacman -S archiso
+	\end{lstlisting}
+	Archiso comes with 2 profiles, \textbf{releng} and \textbf{baseline}.
+	\\
+	Copy the Profile of your Choice to a Directory of your Choice, where <profile> is either \textbf{releng} or \textbf{baseline}:
+	\begin{lstlisting}
+	cp -r /usr/share/archiso/configs/<profile> <directory>
+	\end{lstlisting}
+
+\subsection{ISO Editing}
+	\label{ArchIsoEdit}
 \section{Debian Based}
 \section{Ubuntu Based}
 \section{Branding}
 \section{Afterword}
-\section{Other Documentation}
+\section{Sources}
+\ref{Scratch} \ahref{https://www.linuxfromscratch.org/lfs}{Linux From Scratch Book}
+
+\ref{ScratchBase} \ahref{https://stackoverflow.com/a/30056182}{Stackoverflow Answer} 
+
+\ref{ScratchAddBash} \textit{\textbf{Dynamic:}}
+\ahref{https://linuxfromscratch.org/lfs/view/stable/chapter06/bash.html}{Linux From Scratch Bash Page}
+\textit{\textbf{Static:}} \ahref{https://github.com/robxu9/bash-static/blob/master/build.sh}{Static Bash Build Script}
+
+\ref{Archiso} \ahref{https://wiki.archlinux.org/title/archiso}{Archiso Arch Wiki Page}
 \end{document}
