@@ -93,20 +93,21 @@ text-indent: 0;
 <ul class="toc"><li class="li-toc">
 <a href="#sec10">2.2.1&#X2003;Bash</a>
 </li><li class="li-toc"><a href="#sec13">2.2.2&#X2003;BusyBox</a>
+</li><li class="li-toc"><a href="#sec14">2.2.3&#X2003;Package Manager</a>
 </li></ul>
-</li><li class="li-toc"><a href="#sec16">2.3&#X2003;The Boot Loader</a>
-</li><li class="li-toc"><a href="#sec17">2.4&#X2003;Making an Installer</a>
+</li><li class="li-toc"><a href="#sec17">2.3&#X2003;The Boot Loader</a>
+</li><li class="li-toc"><a href="#sec18">2.4&#X2003;Making an Installer</a>
 </li></ul>
-</li><li class="li-toc"><a href="#sec18">3&#X2003;Arch Based</a>
+</li><li class="li-toc"><a href="#sec19">3&#X2003;Arch Based</a>
 <ul class="toc"><li class="li-toc">
-<a href="#sec19">3.1&#X2003;Archiso</a>
-</li><li class="li-toc"><a href="#sec20">3.2&#X2003;ISO Editing</a>
+<a href="#sec20">3.1&#X2003;Archiso</a>
+</li><li class="li-toc"><a href="#sec21">3.2&#X2003;ISO Editing</a>
 </li></ul>
-</li><li class="li-toc"><a href="#sec21">4&#X2003;Debian Based</a>
-</li><li class="li-toc"><a href="#sec22">5&#X2003;Ubuntu Based</a>
-</li><li class="li-toc"><a href="#sec23">6&#X2003;Branding</a>
-</li><li class="li-toc"><a href="#sec24">7&#X2003;Afterword</a>
-</li><li class="li-toc"><a href="#sec25">8&#X2003;Sources</a>
+</li><li class="li-toc"><a href="#sec22">4&#X2003;Debian Based</a>
+</li><li class="li-toc"><a href="#sec23">5&#X2003;Ubuntu Based</a>
+</li><li class="li-toc"><a href="#sec24">6&#X2003;Branding</a>
+</li><li class="li-toc"><a href="#sec25">7&#X2003;Afterword</a>
+</li><li class="li-toc"><a href="#sec26">8&#X2003;Sources</a>
 </li></ul>
 <!--TOC section id="sec2" Foreword-->
 <h2 id="sec2" class="section">1&#X2003;Foreword</h2><!--SEC END --><p>
@@ -227,43 +228,46 @@ Either install it with a Package Manager of choice or build it from Source.</p><
 <!--TOC subsubsection id="sec13" BusyBox-->
 <h4 id="sec13" class="subsubsection">2.2.2&#X2003;BusyBox</h4><!--SEC END --><p>
 		</p>
-<!--TOC paragraph id="sec14" Dynamic Linking-->
-<h4 id="sec14" class="paragraph">Dynamic Linking</h4><!--SEC END --><p>
+<!--TOC subsubsection id="sec14" Package Manager-->
+<h4 id="sec14" class="subsubsection">2.2.3&#X2003;Package Manager</h4><!--SEC END --><p>
 		</p>
-<!--TOC paragraph id="sec15" Static Linking-->
-<h4 id="sec15" class="paragraph">Static Linking</h4><!--SEC END --><p>
+<!--TOC paragraph id="sec15" Dynamic Linking-->
+<h4 id="sec15" class="paragraph">Dynamic Linking</h4><!--SEC END --><p>
 		</p>
-<!--TOC subsection id="sec16" The Boot Loader-->
-<h3 id="sec16" class="subsection">2.3&#X2003;The Boot Loader</h3><!--SEC END --><p>
+<!--TOC paragraph id="sec16" Static Linking-->
+<h4 id="sec16" class="paragraph">Static Linking</h4><!--SEC END --><p>
 		</p>
-<!--TOC subsection id="sec17" Making an Installer-->
-<h3 id="sec17" class="subsection">2.4&#X2003;Making an Installer</h3><!--SEC END -->
-<!--TOC section id="sec18" Arch Based-->
-<h2 id="sec18" class="section">3&#X2003;Arch Based</h2><!--SEC END --><p>
+<!--TOC subsection id="sec17" The Boot Loader-->
+<h3 id="sec17" class="subsection">2.3&#X2003;The Boot Loader</h3><!--SEC END --><p>
+		</p>
+<!--TOC subsection id="sec18" Making an Installer-->
+<h3 id="sec18" class="subsection">2.4&#X2003;Making an Installer</h3><!--SEC END -->
+<!--TOC section id="sec19" Arch Based-->
+<h2 id="sec19" class="section">3&#X2003;Arch Based</h2><!--SEC END --><p>
 <span style="font-weight:bold">You can either generate an Arch Linux ISO with </span><a href="#Archiso"><span style="font-weight:bold">3.1</span></a><span style="font-weight:bold"> Archiso or </span><a href="#ArchIsoEdit"><span style="font-weight:bold">3.2</span></a><span style="font-weight:bold"> edit an ISO from the </span><a href="https://archlinux.org/download"><span style="font-weight:bold">Arch Linux Website</span></a>
 </p>
-<!--TOC subsection id="sec19" Archiso-->
-<h3 id="sec19" class="subsection">3.1&#X2003;Archiso</h3><!--SEC END --><p>
+<!--TOC subsection id="sec20" Archiso-->
+<h3 id="sec20" class="subsection">3.1&#X2003;Archiso</h3><!--SEC END --><p>
 	<a id="Archiso"></a>
 	<span style="font-weight:bold">YOU NEED TO BE ON AN ARCH LINUX SYSTEM!</span></p><p>	First install Archiso:
 	</p><div class="lstlisting">        sudo pacman -S archiso</div><p>	Archiso comes with 2 profiles, <span style="font-weight:bold">releng</span> and <span style="font-weight:bold">baseline</span>.
 	<br>
 	Copy the Profile of your Choice to a Directory of your Choice, where &lt;profile&gt; is either <span style="font-weight:bold">releng</span> or <span style="font-weight:bold">baseline</span>:
 	</p><div class="lstlisting">        cp -r /usr/share/archiso/configs/&lt;profile&gt; &lt;directory&gt;</div>
-<!--TOC subsection id="sec20" ISO Editing-->
-<h3 id="sec20" class="subsection">3.2&#X2003;ISO Editing</h3><!--SEC END --><p>
+<!--TOC subsection id="sec21" ISO Editing-->
+<h3 id="sec21" class="subsection">3.2&#X2003;ISO Editing</h3><!--SEC END --><p>
 	<a id="ArchIsoEdit"></a>
 </p>
-<!--TOC section id="sec21" Debian Based-->
-<h2 id="sec21" class="section">4&#X2003;Debian Based</h2><!--SEC END -->
-<!--TOC section id="sec22" Ubuntu Based-->
-<h2 id="sec22" class="section">5&#X2003;Ubuntu Based</h2><!--SEC END -->
-<!--TOC section id="sec23" Branding-->
-<h2 id="sec23" class="section">6&#X2003;Branding</h2><!--SEC END -->
-<!--TOC section id="sec24" Afterword-->
-<h2 id="sec24" class="section">7&#X2003;Afterword</h2><!--SEC END -->
-<!--TOC section id="sec25" Sources-->
-<h2 id="sec25" class="section">8&#X2003;Sources</h2><!--SEC END --><p>
+<!--TOC section id="sec22" Debian Based-->
+<h2 id="sec22" class="section">4&#X2003;Debian Based</h2><!--SEC END -->
+<!--TOC section id="sec23" Ubuntu Based-->
+<h2 id="sec23" class="section">5&#X2003;Ubuntu Based</h2><!--SEC END -->
+<!--TOC section id="sec24" Branding-->
+<h2 id="sec24" class="section">6&#X2003;Branding</h2><!--SEC END -->
+<!--TOC section id="sec25" Afterword-->
+<h2 id="sec25" class="section">7&#X2003;Afterword</h2><!--SEC END -->
+<!--TOC section id="sec26" Sources-->
+<h2 id="sec26" class="section">8&#X2003;Sources</h2><!--SEC END --><p>
 <a href="#Scratch">2</a> <a href="https://www.linuxfromscratch.org/lfs">Linux From Scratch Book</a></p><p><a href="#ScratchBase">2.1</a> <a href="https://stackoverflow.com/a/30056182">Stackoverflow Answer</a> </p><p><a href="#ScratchAddBash">2.2.1</a> <span style="font-style:italic"><span style="font-weight:bold">Dynamic:</span></span>
 <a href="https://linuxfromscratch.org/lfs/view/stable/chapter06/bash.html">Linux From Scratch Bash Page</a>
 <span style="font-style:italic"><span style="font-weight:bold">Static:</span></span> <a href="https://github.com/robxu9/bash-static/blob/master/build.sh">Static Bash Build Script</a></p><p><a href="#Archiso">3.1</a> <a href="https://wiki.archlinux.org/title/archiso">Archiso Arch Wiki Page</a>
