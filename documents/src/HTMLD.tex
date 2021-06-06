@@ -15,6 +15,9 @@
 	\end{center}
 }
 
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
 \begin{document}
 
 \maketitle
@@ -27,6 +30,10 @@
 	\\And it can help you learn the inner workings of a Linux Distro.
 
 	\textit{\textbf{i gotta add more shit here!}}
+
+	It is Reccomended to make a Shell Script instead of running commands Manually to more easily Modify the System
+	\\
+	It can be very helpful to use a tool like \ahref{https://git-scm.com}{git} to easily revert changes
 
 \section{From Scratch}
 \label{Scratch}
@@ -45,8 +52,7 @@
 	mkdir -v rootfs
 			\end{lstlisting}
 
-			It can be very helpful to use a tool like \ahref{https://git-scm.com}{git} to easily revert changes
-		\subsubsection{Linux Kernel}
+		\subsubsection{Kernel}
 
 			Download and Extract the Linux Kernel (There probably will be newer kernels than the one on the link shown here. If you want a newer Linux Kernel go to \ahref{https://www.kernel.org}{The linux kernel Website} and download it from there.)
 			\begin{lstlisting}
@@ -95,10 +101,11 @@
 		
 		\subsection{Adding Programs}
 		Now we have a \textit{working} Linux System, albeit very useless.
-		So lets add a shell, in this case we will use \ahref{https://www.gnu.org/software/bash}{Bash}.
+		\\
+		So lets add Some Programs.
 		\subsubsection{Bash}
-		\label{ScratchAddBash}
 		\paragraph{Dynamic Linking}
+		\label{BashDynamic}
 		To dynamically compile Bash, the Linux System will need all of Bash's Dependencies, which are
 		\begin{enumerate}
 			\item glibc
@@ -133,6 +140,7 @@
 	mv usr/bin/bash bin/bash
 		\end{lstlisting}
 		\paragraph{Static Linking}
+		\label{BashStatic}
 		Static Compilation does not need any of Bash's dependencies to be in the System, instead it is just one Singular File.
 
 		\ahref{https://www.musl-libc.org}{musl} is needed for true Static linking
@@ -172,27 +180,37 @@
 		\subsubsection{Package Manager}	
 			\paragraph{The Packages}
 			\paragraph{The Manager}
-		\subsection{The Boot Loader}
+		\subsubsection{Boot Loader}
+			\paragraph{ISO}
+			\paragraph{Installed System}
 		\subsection{Making an Installer}
 \section{Arch Based}
-\textbf{You can either generate an Arch Linux ISO with \ref{Archiso} Archiso or \ref{ArchIsoEdit} edit an ISO from the \ahref{https://archlinux.org/download}{Arch Linux Website}}
 \subsection{Archiso}
 	\label{Archiso}
-	\textbf{YOU NEED TO BE ON AN ARCH LINUX SYSTEM!}
-
+	\textbf{YOU NEED TO BE ON AN ARCH LINUX SYSTEM!}	
+\subsubsection{Workspace}
 	First install Archiso:
 	\begin{lstlisting}
 	sudo pacman -S archiso
 	\end{lstlisting}
 	Archiso comes with 2 profiles, \textbf{releng} and \textbf{baseline}.
-	\\
-	Copy the Profile of your Choice to a Directory of your Choice, where <profile> is either \textbf{releng} or \textbf{baseline}:
+	\begin{itemize}
+		\item \textbf{releng} is used to create the official monthly installation ISO. It can be used as a starting point for creating a customized ISO image.
+    	\item \textbf{baseline} is a minimalistic configuration, that includes only the bare minimum packages required to boot the live environment from the medium.
+	\end{itemize}
+	Copy the Profile of your Choice to a Directory of your Choice:
 	\begin{lstlisting}
 	cp -r /usr/share/archiso/configs/<profile> <directory>
 	\end{lstlisting}
-
+\subsubsection{Adding Packages}
+\subsubsection{Configuring the Root Filesystem}
+\subsubsection{Kernel}
 \subsection{ISO Editing}
-	\label{ArchIsoEdit}
+\subsection{Making an Installer}
+\subsection{Booting}
+\subsubsection{Hardware}
+\subsubsection{Virtual}
+\textbf{For a more in-depth guide of QEMU check out the \ahref{/documents/QEMU}{Document on QEMU}}
 \section{Debian Based}
 \section{Ubuntu Based}
 \section{Generic}
@@ -203,9 +221,9 @@
 
 \ref{ScratchBase} \ahref{https://stackoverflow.com/a/30056182}{Stackoverflow Answer} 
 
-\ref{ScratchAddBash} \textit{\textbf{Dynamic:}}
-\ahref{https://linuxfromscratch.org/lfs/view/stable/chapter06/bash.html}{Linux From Scratch Bash Page}
-\textit{\textbf{Static:}} \ahref{https://github.com/robxu9/bash-static/blob/master/build.sh}{Static Bash Build Script}
+\ref{BashDynamic} \ahref{https://linuxfromscratch.org/lfs/view/stable/chapter06/bash.html}{Linux From Scratch Bash Page}
+
+\ref{BashStatic} \ahref{https://github.com/robxu9/bash-static/blob/master/build.sh}{Static Bash Build Script}
 
 \ref{Archiso} \ahref{https://wiki.archlinux.org/title/archiso}{Archiso Arch Wiki Page}
 \end{document}
