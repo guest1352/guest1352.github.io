@@ -15,6 +15,8 @@
 	\end{center}
 }
 
+\renewcommand{\contentsname}{Table of Contents}
+
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
@@ -203,13 +205,14 @@
 	cp -r /usr/share/archiso/configs/<profile> <directory>
 	\end{lstlisting}
 \subsubsection{Adding Packages}
+\textbf{If your Distro will Include Xorg/Wayland you should add the Drivers to the Hardware that will be used}
 \subsubsection{Configuring the Root Filesystem}
 \subsubsection{Kernel}
 \subsection{ISO Editing}
 \subsection{Making an Installer}
 \subsection{Booting}
 \subsubsection{Hardware}
-\subsubsection{Virtual}
+\subsubsection{Virtual Machine}
 \textbf{For a more in-depth guide of QEMU check out the \ahref{/documents/QEMU}{Document on QEMU}}
 \section{Debian Based}
 \section{Ubuntu Based}

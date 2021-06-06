@@ -22,6 +22,8 @@ td p{margin:0px;}
 .quote{margin-left:3em;margin-right:3em;text-align:inherit;text-indent:0pt}
 .horizontal-rule{border:none;background-color:black;}
 .lstlisting{font-family:monospace;white-space:pre;margin-right:auto;margin-left:0pt;text-align:left}
+body { background-image: url('/documents/src/images/bg.png'); 	 } 
+html { cursor: url('/stuff/cursor.gif'), auto; height: 100% } 
 </style>
 <title>How to make a Linux Distro (WIP)
 </title>
@@ -32,8 +34,8 @@ td p{margin:0px;}
 	</p><div class="center">
 		<span style="font-weight:bold;font-size:xx-large">		How to make a Linux Distro (WIP)</span>
 		<p>		Funy Monkey &#X2014; Last Updated: 2021 06 06 
-	</p></div><!--TOC section id="sec1" Contents-->
-<h2 class="section" id="sec1">Contents</h2><!--SEC END --><ul class="toc"><li class="li-toc">
+	</p></div><!--TOC section id="sec1" Table of Contents-->
+<h2 class="section" id="sec1">Table of Contents</h2><!--SEC END --><ul class="toc"><li class="li-toc">
 <a href="#sec2">1&#X2003;Foreword</a>
 </li><li class="li-toc"><a href="#sec3">2&#X2003;From Scratch</a>
 <ul class="toc"><li class="li-toc">
@@ -83,7 +85,7 @@ td p{margin:0px;}
 </li><li class="li-toc"><a href="#sec31">3.4&#X2003;Booting</a>
 <ul class="toc"><li class="li-toc">
 <a href="#sec32">3.4.1&#X2003;Hardware</a>
-</li><li class="li-toc"><a href="#sec33">3.4.2&#X2003;Virtual</a>
+</li><li class="li-toc"><a href="#sec33">3.4.2&#X2003;Virtual Machine</a>
 </li></ul>
 </li></ul>
 </li><li class="li-toc"><a href="#sec34">4&#X2003;Debian Based</a>
@@ -259,7 +261,9 @@ Either install it with a Package Manager of choice or build it from Source.</p><
 	Copy the Profile of your Choice to a Directory of your Choice:
 	</p><div class="lstlisting">        cp -r /usr/share/archiso/configs/&lt;profile&gt; &lt;directory&gt;</div>
 <!--TOC subsubsection id="sec26" Adding Packages-->
-<h4 class="subsubsection" id="sec26">3.1.2&#X2003;Adding Packages</h4><!--SEC END -->
+<h4 class="subsubsection" id="sec26">3.1.2&#X2003;Adding Packages</h4><!--SEC END --><p>
+<span class="c002">If your Distro will Include Xorg/Wayland you should add the Drivers to the Hardware that will be used</span>
+</p>
 <!--TOC subsubsection id="sec27" Configuring the Root Filesystem-->
 <h4 class="subsubsection" id="sec27">3.1.3&#X2003;Configuring the Root Filesystem</h4><!--SEC END -->
 <!--TOC subsubsection id="sec28" Kernel-->
@@ -272,8 +276,8 @@ Either install it with a Package Manager of choice or build it from Source.</p><
 <h3 class="subsection" id="sec31">3.4&#X2003;Booting</h3><!--SEC END -->
 <!--TOC subsubsection id="sec32" Hardware-->
 <h4 class="subsubsection" id="sec32">3.4.1&#X2003;Hardware</h4><!--SEC END -->
-<!--TOC subsubsection id="sec33" Virtual-->
-<h4 class="subsubsection" id="sec33">3.4.2&#X2003;Virtual</h4><!--SEC END --><p>
+<!--TOC subsubsection id="sec33" Virtual Machine-->
+<h4 class="subsubsection" id="sec33">3.4.2&#X2003;Virtual Machine</h4><!--SEC END --><p>
 <span class="c002">For a more in-depth guide of QEMU check out the </span><a href="/documents/QEMU"><span class="c002">Document on QEMU</span></a>
 </p>
 <!--TOC section id="sec34" Debian Based-->

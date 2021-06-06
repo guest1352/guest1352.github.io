@@ -19,6 +19,8 @@ htmldCompile() {
 	rm -f HTMLD/*.haux HTMLD/*.htoc HTMLD/*.image*
 	sed -i "s/DATE/$date/g" HTMLD/index.html
 	sed -i "s/index001.png/\/documents\/src\/images\/hellolinuxworld.png/g" HTMLD/index.html
+	sed -i "s/<\/style>/body { background-image: url('\/documents\/src\/images\/bg.png'); \
+	 } \nhtml { cursor: url('\/stuff\/cursor.gif'), auto; height: 100% } \n<\/style>/g" HTMLD/index.html
 }
 torrentCompile() {
 	echo "Compiling TORRENT"
@@ -26,6 +28,8 @@ torrentCompile() {
 	for i in 1 2; do ( cd src && hevea TORRENT.tex -O -o ../TORRENT/index.html ); done
 	rm -f TORRENT/*.haux TORRENT/*.htoc TORRENT/*.image*
 	sed -i "s/DATE/$date/g" TORRENT/index.html
+	sed -i "s/<\/style>/body { background-image: url('\/documents\/src\/images\/bg.png'); \
+	 } \nhtml { cursor: url('\/stuff\/cursor.gif'), auto; height: 100% } \n<\/style>/g" TORRENT/index.html
 }
 qemuCompile() {
 	echo "Compiling QEMU"
@@ -33,5 +37,7 @@ qemuCompile() {
 	for i in 1 2; do ( cd src && hevea QEMU.tex -O -o ../QEMU/index.html ); done
 	rm -f QEMU/*.haux QEMU/*.htoc QEMU/*.image*
 	sed -i "s/DATE/$date/g" QEMU/index.html
+	sed -i "s/<\/style>/body { background-image: url('\/documents\/src\/images\/bg.png'); \
+	 } \nhtml { cursor: url('\/stuff\/cursor.gif'), auto; height: 100% } \n<\/style>/g" QEMU/index.html	
 }
 main "$@"; exit
