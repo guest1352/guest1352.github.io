@@ -16,10 +16,9 @@ htmldCompile() {
 	echo "Compiling HTMLD"
 	date="$(date -I -r src/HTMLD.tex | sed 's/-/ /g')"
 	for i in 1 2; do ( cd src && hevea HTMLD.tex -O -o ../HTMLD/index.html ); done
-	printf \n\n | imagen HTMLD/index
-	cp src/HelloLinuxWorld.png HTMLD/index001.png
 	rm -f HTMLD/*.haux HTMLD/*.htoc HTMLD/*.image*
 	sed -i "s/DATE/$date/g" HTMLD/index.html
+	sed -i "s/index001.png/\/documents\/src\/images\/hellolinuxworld.png/g" HTMLD/index.html
 }
 torrentCompile() {
 	echo "Compiling TORRENT"
