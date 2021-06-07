@@ -67,32 +67,41 @@ done
 
 read -p "Set Username: " username
 # make this check if there are any s p a c e s or CAPITALS in the username
-echo 
+printf \n
 while true; do
     setpass "Set $username's Password: " "usernamepassword"
-    echo
+    printf \n
     setpass "Verify $username's Password: " "usernamepasswordcheck"
-    echo
+    printf \n
     if [ "$usernamepassword" = "$usernamepasswordcheck" ]; then
         break
     else
         echo "Passwords not the same! Try again."
-        echo
+        printf \n
     fi
 done
 while true; do
     setpass "Set root Password: " "rootpassword"
-    echo
+    printf \n
     setpass "Verify root Password: " "rootpasswordcheck"
-    echo
+    printf \n
     if [ "$rootpassword" = "$rootpasswordcheck" ]; then
         break
     else
         echo "Passwords not the same! Try again."
-        echo
+        printf \n
     fi
 done
 read -p "Set hostname: " inhostname
+
+while true; do
+	read -p "Are you on BIOS or UEFI?: " bu
+	case $bu in
+		[Bb]* ) read -p "Disk to install Bootloader to (NOT PARTITION!): " BIOS; BorU=0; break;;
+		[Uu]* ) read -p "Enter EFI partition mount point (most likely /boot): " EFI; BorU=1; break;;
+		* ) echo "Please answer BIOS or UEFI.";;
+	esac
+done
 
 # configuration (setting usernames and passwords and all that jazz) #
 
@@ -122,14 +131,11 @@ touch /etc/issue
 rm -f /boot/amd-ucode.img /boot/intel-ucode.img
 mkinitcpio -P
 lsblk
-while true; do
-    read -p "Are you on BIOS or UEFI?: " bu
-    case \$bu in
-        [Bb]* ) read -p "Disk to install Bootloader to (NOT PARTITION!): " DISKBOOT; grub-install --recheck \$DISKBOOT; break;;
-        [Uu]* ) read -p "Enter EFI partition mount point (most likely /boot): " EFIPART; grub-install --target=x86_64-efi --efi-directory=\$EFIPART --bootloader-id=SEX; break;;
-        * ) echo "Please answer BIOS or UEFI.";;
-    esac
-done
+if [ "$BorU" = "0" ]; then
+	grub-install --target=i386-pc --recheck $BIOS
+else
+	grub-install --target=x86_64-efi --efi-directory=$EFI --bootloader-id=SEX
+fi
 grub-mkconfig -o /boot/grub/grub.cfg
 userdel -r sex
 userdel -r artix
